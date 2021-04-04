@@ -9,34 +9,30 @@ using Xunit.Sdk;
 
 namespace LambdaTale.Execution;
 
-public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
+public class ScenarioOutlineTestCaseRunner(
+    IMessageSink diagnosticMessageSink,
+    IXunitTestCase scenarioOutline,
+    string displayName,
+    string skipReason,
+    object[] constructorArguments,
+    IMessageBus messageBus,
+    ExceptionAggregator aggregator,
+    CancellationTokenSource cancellationTokenSource)
+    : XunitTestCaseRunner(scenarioOutline,
+        displayName,
+        skipReason,
+        constructorArguments,
+        NoArguments,
+        messageBus,
+        aggregator,
+        cancellationTokenSource)
 {
-    private static readonly object[] noArguments = [];
+    private static readonly object[] NoArguments = [];
 
-    private readonly IMessageSink diagnosticMessageSink;
     private readonly ExceptionAggregator cleanupAggregator = new();
     private readonly List<ScenarioRunner> scenarioRunners = [];
     private readonly List<IDisposable> disposables = [];
     private Exception dataDiscoveryException;
-
-    public ScenarioOutlineTestCaseRunner(
-        IMessageSink diagnosticMessageSink,
-        IXunitTestCase scenarioOutline,
-        string displayName,
-        string skipReason,
-        object[] constructorArguments,
-        IMessageBus messageBus,
-        ExceptionAggregator aggregator,
-        CancellationTokenSource cancellationTokenSource)
-        : base(
-            scenarioOutline,
-            displayName,
-            skipReason,
-            constructorArguments,
-            noArguments,
-            messageBus,
-            aggregator,
-            cancellationTokenSource) => this.diagnosticMessageSink = diagnosticMessageSink;
 
     protected override async Task AfterTestCaseStartingAsync()
     {
@@ -49,7 +45,7 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
             {
                 var discovererAttribute = dataAttribute.GetCustomAttributes(typeof(DataDiscovererAttribute)).First();
                 var discoverer =
-                    ExtensibilityPointFactory.GetDataDiscoverer(this.diagnosticMessageSink, discovererAttribute);
+                    ExtensibilityPointFactory.GetDataDiscoverer(diagnosticMessageSink, discovererAttribute);
 
                 foreach (var dataRow in discoverer.GetData(dataAttribute, this.TestCase.TestMethod.Method))
                 {
@@ -75,7 +71,7 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
 
             if (!this.scenarioRunners.Any())
             {
-                var info = new ScenarioInfo(this.TestCase.TestMethod.Method, noArguments, this.DisplayName);
+                var info = new ScenarioInfo(this.TestCase.TestMethod.Method, NoArguments, this.DisplayName);
                 var test = new Scenario(this.TestCase, info.ScenarioDisplayName);
                 var runner = new ScenarioRunner(
                     test,
@@ -91,9 +87,7 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
                 this.scenarioRunners.Add(runner);
             }
         }
-#pragma warning disable CA1031 // Do not catch general exception types
         catch (Exception ex)
-#pragma warning restore CA1031 // Do not catch general exception types
         {
             this.dataDiscoveryException = ex;
         }

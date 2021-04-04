@@ -14,12 +14,12 @@ public class MetadataFeature
             .Teardown(c => Assert.Same(stepContext, c));
 
         "Then the step context contains metadata about the step"
-            .x(() => Assert.Equal("LambdaTale.Test.MetadataFeature.UsingMetadata(text: \"abc\") [01] When I execute a step", (step = stepContext.Step)?.DisplayName));
+            .x(() => Assert.EndsWith("UsingMetadata(text: \"abc\") [01] When I execute a step", (step = stepContext.Step)?.DisplayName));
 
         "And the step contains metadata about the scenario"
-            .x(() => Assert.Equal("LambdaTale.Test.MetadataFeature.UsingMetadata(text: \"abc\")", (scenario = step.Scenario)?.DisplayName));
+            .x(() => Assert.EndsWith("UsingMetadata(text: \"abc\")", (scenario = step.Scenario)?.DisplayName));
 
         "And the step contains metadata about the scenario outline"
-            .x(() => Assert.Equal("LambdaTale.Test.MetadataFeature.UsingMetadata", scenario.ScenarioOutline?.DisplayName));
+            .x(() => Assert.EndsWith("UsingMetadata", scenario.ScenarioOutline?.DisplayName));
     }
 }

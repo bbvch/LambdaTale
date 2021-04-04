@@ -324,9 +324,7 @@ an null value for an argument defined using the fifth type parameter"
     {
         [Scenario]
         [Example(new[] { "one", "two" }, new[] { 1, 2 })]
-#pragma warning disable IDE0060 // Remove unused parameter
         public static void Scenario(string[] words, int[] numbers) =>
-#pragma warning restore IDE0060 // Remove unused parameter
             "Given something"
                 .x(() => { });
     }

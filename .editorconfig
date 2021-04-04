@@ -138,6 +138,9 @@ dotnet_style_require_accessibility_modifiers                              = for_
 file_header_template                                                      = unset
 indent_size                                                               = 4
 
+dotnet_diagnostic.CA1034.severity                                         = none
+dotnet_diagnostic.CA2007.severity                                         = none
+
 [*.sh]
 end_of_line                                                               = lf
 

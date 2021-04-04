@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Bullseye" />
     <PackageReference Include="SimpleExec" />
+    <PackageReference Include="System.Linq.Async" />
   </ItemGroup>
 
 </Project>

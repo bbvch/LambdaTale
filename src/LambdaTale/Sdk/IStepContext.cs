@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace LambdaTale.Sdk;
 
@@ -12,7 +11,6 @@ public interface IStepContext
     /// <summary>
     /// Gets the step which owns this context.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Step", Justification = "Makes sense here.")]
     IStep Step { get; }
 
     /// <summary>
@@ -21,6 +19,5 @@ public interface IStepContext
     /// </summary>
     /// <param name="disposable">The object to be disposed.</param>
     /// <returns>The current <see cref="IStepContext"/>.</returns>
-    [SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Using", Justification = "Makes sense here.")]
     IStepContext Using(IDisposable disposable);
 }

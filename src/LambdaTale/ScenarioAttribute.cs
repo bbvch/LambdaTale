@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Xunit;
 using Xunit.Sdk;
 
@@ -17,7 +16,4 @@ namespace LambdaTale;
 /// </summary>
 [XunitTestCaseDiscoverer("LambdaTale.Execution.ScenarioDiscoverer", "LambdaTale.Execution")]
 [AttributeUsage(AttributeTargets.Method)]
-[SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes", Justification = "Designed for extensibility.")]
-public class ScenarioAttribute : FactAttribute
-{
-}
+public class ScenarioAttribute : FactAttribute;
