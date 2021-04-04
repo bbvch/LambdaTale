@@ -28,9 +28,7 @@ public class SkippedScenarioFeature : Feature
 
     private static class FeatureWithASkippedScenario
     {
-#pragma warning disable xUnit1004 // Test methods should not be skipped
         [Scenario(Skip = "Test")]
-#pragma warning restore xUnit1004 // Test methods should not be skipped
         public static void Scenario1() => throw new InvalidOperationException();
     }
 }

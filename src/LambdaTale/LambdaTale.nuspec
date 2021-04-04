@@ -13,8 +13,10 @@
     <tags>testing xunit</tags>
     <version>$Version$</version>
     <dependencies>
-      <dependency id="xunit.core" version="[2.9.0, 2.10)" />
-      <dependency id="xunit.extensibility.execution" version="[2.9.0, 2.10)" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="xunit.core" version="[2.9.0, 2.10)" />
+        <dependency id="xunit.extensibility.execution" version="[2.9.0, 2.10)" />
+      </group>
     </dependencies>
   </metadata>
   <files>

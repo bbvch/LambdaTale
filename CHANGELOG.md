@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.2
+
+cleanup suppressions (mostly)
+
 ## 2.9.1
 
 support injecting `ITestOutputHelper` (with some [Gotchas](./README.md#gotchas))

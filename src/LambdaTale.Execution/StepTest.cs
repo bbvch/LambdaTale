@@ -1,12 +1,10 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using LambdaTale.Sdk;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace LambdaTale.Execution;
 
-[SuppressMessage("Microsoft.Naming", "CA1716:IdentifiersShouldNotMatchKeywords", MessageId = "Step", Justification = "By design.")]
 public class StepTest : LongLivedMarshalByRefObject, IStep
 {
     public StepTest(IScenario scenario, string displayName)

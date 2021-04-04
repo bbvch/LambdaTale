@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Xunit.Sdk;
 
 namespace LambdaTale;
@@ -15,8 +14,5 @@ namespace LambdaTale;
 /// <see cref="BeforeAfterTestAttribute.After(System.Reflection.MethodInfo)" />
 /// will be run before and after the scenario, rather than before and after each step in the scenario.
 /// </remarks>
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-[SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes", Justification = "Designed for extensibility.")]
-public abstract class BeforeAfterScenarioAttribute : BeforeAfterTestAttribute
-{
-}
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true)]
+public abstract class BeforeAfterScenarioAttribute : BeforeAfterTestAttribute;

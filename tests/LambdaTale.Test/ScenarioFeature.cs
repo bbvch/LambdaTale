@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using LambdaTale.Sdk;
 using LambdaTale.Test.Infrastructure;
@@ -342,13 +341,10 @@ public class ScenarioFeature : Feature
 
     private class FeatureWithANonStaticScenarioButNoDefaultConstructor
     {
-#pragma warning disable IDE0060 // Remove unused parameter
         public FeatureWithANonStaticScenarioButNoDefaultConstructor(int _)
-#pragma warning restore IDE0060 // Remove unused parameter
         {
         }
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Required for testing.")]
         [Scenario]
         public void Scenario() =>
             "Given something"
@@ -359,7 +355,6 @@ public class ScenarioFeature : Feature
     {
         public FeatureWithAFailingConstructor() => throw new InvalidOperationException();
 
-        [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Required for testing.")]
         [Scenario]
         public void Scenario() =>
             "Given something"

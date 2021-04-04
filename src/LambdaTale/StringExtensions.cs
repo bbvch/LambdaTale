@@ -9,7 +9,6 @@ namespace LambdaTale;
 /// </summary>
 public static class StringExtensions
 {
-#pragma warning disable IDE1006 // Naming Styles
     /// <summary>
     /// Defines a step in the current scenario.
     /// </summary>
@@ -96,5 +95,4 @@ public static class StringExtensions
         CurrentThread.Add(stepDefinition);
         return stepDefinition;
     }
-#pragma warning restore IDE1006 // Naming Styles
 }

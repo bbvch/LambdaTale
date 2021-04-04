@@ -1,11 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
-
 namespace LambdaTale;
 
 /// <summary>
 /// Indicates the behavior of remaining steps when a step fails.
 /// </summary>
-[SuppressMessage("Microsoft.Naming", "CA1717:OnlyFlagsEnumsShouldHavePluralNames", Justification = "Makes sense here.")]
 public enum RemainingSteps
 {
     /// <summary>

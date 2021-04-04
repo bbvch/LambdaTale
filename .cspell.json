@@ -23,7 +23,7 @@
     },
     {
       "languageId": "csproj",
-      "words": ["buildtransitive", "contentfiles", "ruleset", "visualstudio"]
+      "words": ["buildtransitive", "contentfiles", "linq", "ruleset", "visualstudio"]
     },
     {
       "languageId": "nuspec",
@@ -31,7 +31,7 @@
     },
     {
       "languageId": "props",
-      "words": ["analyzers", "netstandard"]
+      "words": ["analyzers", "linq", "netstandard"]
     }
   ],
   "overrides": [

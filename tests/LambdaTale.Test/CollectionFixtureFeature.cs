@@ -32,9 +32,7 @@ public class CollectionFixtureFeature : Feature
     }
 
     [CollectionDefinition("CollectionFixtureTestFeatures")]
-    public class CollectionFixtureTestFeatures : ICollectionFixture<Fixture>
-    {
-    }
+    public class CollectionFixtureTestFeatures : ICollectionFixture<Fixture>;
 
     [Collection("CollectionFixtureTestFeatures")]
     public class ScenarioWithACollectionFixture1
