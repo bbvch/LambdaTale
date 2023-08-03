@@ -15,7 +15,7 @@ namespace LambdaTale
     /// E.g. <see cref="Xunit.InlineDataAttribute"/> or
     /// <see cref="Xunit.MemberDataAttribute"/>.
     /// </summary>
-    [XunitTestCaseDiscoverer("LambdaTale.Execution.ScenarioDiscoverer", "LambdaTale.Execution.{Platform}")]
+    [XunitTestCaseDiscoverer("LambdaTale.Execution.ScenarioDiscoverer", "LambdaTale.Execution")]
     [AttributeUsage(AttributeTargets.Method)]
     [SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes", Justification = "Designed for extensibility.")]
     public class ScenarioAttribute : FactAttribute
