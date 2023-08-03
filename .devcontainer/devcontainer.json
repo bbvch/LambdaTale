@@ -3,18 +3,20 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "settings": {
-    "terminal.integrated.shell.linux": "/bin/bash"
+  "customizations": {
+    "vscode": {
+      "settings": { "terminal.integrated.shell.linux": "/bin/bash" },
+      "extensions": [
+        "alefragnani.Bookmarks",
+        "DavidAnson.vscode-markdownlint",
+        "editorconfig.editorconfig",
+        "jeff-hykin.code-eol",
+        "bierner.markdown-preview-github-styles",
+        "ms-dotnettools.csharp",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
   },
-  "extensions": [
-    "alefragnani.Bookmarks",
-    "DavidAnson.vscode-markdownlint",
-    "editorconfig.editorconfig",
-    "jeff-hykin.code-eol",
-    "bierner.markdown-preview-github-styles",
-    "ms-dotnettools.csharp",
-    "redhat.vscode-yaml",
-    "streetsidesoftware.code-spell-checker"
-  ],
   "remoteUser": "vscode"
 }
