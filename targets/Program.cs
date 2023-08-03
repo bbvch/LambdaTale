@@ -6,11 +6,10 @@ Target("build", () => RunAsync("dotnet", "build --configuration Release --nologo
 Target(
     "pack",
     DependsOn("build"),
-    ForEach("Xbehave.Core.nuspec", "Xbehave.nuspec"),
-    nuspec => RunAsync(
+    () => RunAsync(
         "dotnet",
-        "pack src/Xbehave.Core --configuration Release --no-build --nologo",
-        configureEnvironment: env => env.Add("NUSPEC_FILE", nuspec)));
+        "pack src/LambdaTale --configuration Release --no-build --nologo",
+        configureEnvironment: env => env.Add("NUSPEC_FILE", "LambdaTale.nuspec")));
 
 Target(
     "test",
