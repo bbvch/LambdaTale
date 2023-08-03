@@ -38,7 +38,7 @@ namespace Xbehave
                 : stepBuilder?.Teardown(context =>
                     {
                         action(context);
-                        return Task.FromResult(0);
+                        return Task.CompletedTask;
                     });
 
         /// <summary>

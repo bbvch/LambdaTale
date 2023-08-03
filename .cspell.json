@@ -1,56 +1,31 @@
 {
-  "version": "0.1",
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
   "language": "en-GB",
+  "ignorePaths": ["**/Upstream/*", "PublicAPI.*.txt", "**/bin/*", "**/obj/*"],
   "languageSettings": [
     {
       "languageId": "csharp",
       "words": [
         "bazz",
+        "browsable",
+        "namespaceanddescendants",
+        "netcoreapp",
         "nologo",
-        "Xbehave",
-        "Xunit",
         "zyxwvutsrq"
       ]
     },
     {
       "languageId": "csproj",
-      "words": [
-        "netcoreapp",
-        "netstandard",
-        "ruleset",
-        "visualstudio",
-        "Xbehave",
-        "xunit"
-      ]
+      "words": ["netcoreapp", "netstandard", "ruleset", "visualstudio"]
     },
     {
       "languageId": "markdown",
-      "words": [
-        "analyzers",
-        "Xbehave",
-        "xunit"
-      ]
+      "words": ["analyzers"]
     },
     {
       "languageId": "nuspec",
-      "words": [
-        "netstandard",
-        "Xbehave",
-        "xunit"
-      ]
-    },
-    {
-      "languageId": "props",
-      "words": [
-        "Xbehave"
-      ]
-    },
-    {
-      "languageId": "ruleset",
-      "words": [
-        "Xbehave",
-        "xunit"
-      ]
+      "words": ["netstandard"]
     }
   ],
   "overrides": [
@@ -63,28 +38,9 @@
       "languageId": "csproj"
     },
     {
-      "filename": "{**/Upstream/*,.cspell.json,PublicAPI.*.txt,*.snk}",
-      "enabled": false
-    },
-    {
       "filename": "*.nuspec",
       "languageId": "nuspec"
-    },
-    {
-      "filename": "*.props",
-      "languageId": "props"
-    },
-    {
-      "filename": "*.ruleset",
-      "languageId": "ruleset"
     }
   ],
-  "words": [
-    "markdownlint",
-    "Pakaski",
-    "teardowns",
-    "timeout",
-    "untracked",
-    "Vanja"
-  ]
+  "words": ["Pakaski", "teardowns", "Vanja", "Xbehave", "xunit"]
 }

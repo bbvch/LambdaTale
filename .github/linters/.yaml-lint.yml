@@ -6,3 +6,5 @@ rules:
     max: 160
   new-lines:
     type: dos
+  truthy:
+    check-keys: false

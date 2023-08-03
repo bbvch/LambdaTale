@@ -28,7 +28,7 @@ namespace Xbehave
                     : c =>
                         {
                             body();
-                            return Task.FromResult(0);
+                            return Task.CompletedTask;
                         },
             };
 
@@ -54,7 +54,7 @@ namespace Xbehave
                     : c =>
                         {
                             body(c);
-                            return Task.FromResult(0);
+                            return Task.CompletedTask;
                         },
             };
 

@@ -44,7 +44,7 @@
 - [#263: **[BREAKING]** Step context for teardowns](https://github.com/adamralph/xbehave.net/issues/263)
 - [#298: Source stepping](https://github.com/adamralph/xbehave.net/issues/298)
 - [#300: Support .NET Standard 1.1 (including .NET Core 1.0 onwards)](https://github.com/adamralph/xbehave.net/issues/300)
-- [#371: Consistent package id's and titles](https://github.com/adamralph/xbehave.net/issues/371)
+- [#371: Consistent package IDs and titles](https://github.com/adamralph/xbehave.net/issues/371)
 - [#375: **[BREAKING]** Link against xUnit.net 2.3.x](https://github.com/adamralph/xbehave.net/issues/375)
 - [#388: Use improved argument formatter from xUnit.net 2.3](https://github.com/adamralph/xbehave.net/issues/388)
 - [#397: Support example skipping](https://github.com/adamralph/xbehave.net/issues/397)

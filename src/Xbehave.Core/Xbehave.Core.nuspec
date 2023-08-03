@@ -21,16 +21,16 @@ Installing this package installs xunit.core.</description>
   <files>
     <file src="..\..\assets\xbehave_256x256.png"  target="" />
 
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.dll" target="lib\net452" />
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.pdb" target="lib\net452" />
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.xml" target="lib\net452" />
-    <file src="..\Xbehave.Execution\desktop\bin\Release\net452\Xbehave.Execution.desktop.dll" target="lib\net452" />
-    <file src="..\Xbehave.Execution\desktop\bin\Release\net452\Xbehave.Execution.desktop.pdb" target="lib\net452" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.dll" target="lib\net462" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.pdb" target="lib\net462" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.xml" target="lib\net462" />
+    <file src="..\Xbehave.Execution\desktop\bin\Release\net462\Xbehave.Execution.desktop.dll" target="lib\net462" />
+    <file src="..\Xbehave.Execution\desktop\bin\Release\net462\Xbehave.Execution.desktop.pdb" target="lib\net462" />
 
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.dll" target="lib\netstandard1.1" />
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.pdb" target="lib\netstandard1.1" />
-    <file src="bin\Release\netstandard1.1\Xbehave.Core.xml" target="lib\netstandard1.1" />
-    <file src="..\Xbehave.Execution\dotnet\bin\Release\netstandard1.1\Xbehave.Execution.dotnet.dll" target="lib\netstandard1.1" />
-    <file src="..\Xbehave.Execution\dotnet\bin\Release\netstandard1.1\Xbehave.Execution.dotnet.pdb" target="lib\netstandard1.1" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.pdb" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\Xbehave.Core.xml" target="lib\netstandard2.0" />
+    <file src="..\Xbehave.Execution\dotnet\bin\Release\netstandard2.0\Xbehave.Execution.dotnet.dll" target="lib\netstandard2.0" />
+    <file src="..\Xbehave.Execution\dotnet\bin\Release\netstandard2.0\Xbehave.Execution.dotnet.pdb" target="lib\netstandard2.0" />
   </files>
 </package>

@@ -128,7 +128,7 @@ namespace Xbehave.Execution
                 }
             }
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         private Task AfterScenarioMethodInvokedAsync()
@@ -138,7 +138,7 @@ namespace Xbehave.Execution
                 this.aggregator.Run(() => this.timer.Aggregate(() => beforeAfterAttribute.After(this.scenarioMethod)));
             }
 
-            return Task.FromResult(0);
+            return Task.CompletedTask;
         }
 
         private async Task<RunSummary> InvokeScenarioMethodAsync(object scenarioClassInstance)
@@ -239,7 +239,7 @@ namespace Xbehave.Execution
                             context =>
                             {
                                 disposable.Dispose();
-                                return Task.FromResult(0);
+                                return Task.CompletedTask;
                             }))
                         .Concat(stepDefinition.Teardowns)
                         .Where(teardown => teardown != null)

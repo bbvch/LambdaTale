@@ -3,21 +3,20 @@
 
 # xBehave.net
 
-_[![Xbehave NuGet version](https://img.shields.io/nuget/v/Xbehave.svg?style=flat&label=nuget%3A%20Xbehave)](https://www.nuget.org/packages/Xbehave)_
-_[![Xbehave.Core NuGet version](https://img.shields.io/nuget/v/Xbehave.Core.svg?style=flat&label=nuget%3A%20Xbehave.Core)](https://www.nuget.org/packages/Xbehave.Core)_
+> [!WARNING]
+> This is a fork of [xBehave.net](https://github.com/adamralph/xbehave.net). Adam, thank you very much!
+> After many years of maintenance, Adam has decided to invest his energy elsewhere.
+> This repo is the birthplace for a new (renamed, new NuGet) version of xBehave.
+> The main goal is to maintain versions used internally. Notably this means that support for old .NET / dotnet versions can be dropped anytime.
 
-_[![Build status](https://github.com/adamralph/xbehave.net/workflows/.github/workflows/ci.yml/badge.svg)](https://github.com/adamralph/xbehave.net/actions)_
-_[![CodeQL analysis](https://github.com/adamralph/xbehave.net/workflows/.github/workflows/codeql-analysis.yml/badge.svg)](https://github.com/adamralph/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Fcodeql-analysis.yml)_
-_[![Lint](https://github.com/adamralph/xbehave.net/workflows/.github/workflows/lint.yml/badge.svg)](https://github.com/adamralph/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Flint.yml)_
-_[![Spell check](https://github.com/adamralph/xbehave.net/workflows/.github/workflows/spell-check.yml/badge.svg)](https://github.com/adamralph/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Fspell-check.yml)_
-
-* [Quick start](https://github.com/adamralph/xbehave.net/wiki/Quick-start)
-* [Documentation](https://github.com/adamralph/xbehave.net/wiki)
-* [FAQ](https://github.com/adamralph/xbehave.net/wiki/FAQ)
+_[![Build status](https://github.com/bbvch/xbehave.net/workflows/.github/workflows/ci.yml/badge.svg)](https://github.com/bbvch/xbehave.net/actions)_
+_[![CodeQL analysis](https://github.com/bbvch/xbehave.net/workflows/.github/workflows/codeql-analysis.yml/badge.svg)](https://github.com/bbvch/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Fcodeql-analysis.yml)_
+_[![Lint](https://github.com/bbvch/xbehave.net/workflows/.github/workflows/lint.yml/badge.svg)](https://github.com/bbvch/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Flint.yml)_
+_[![Spell check](https://github.com/bbvch/xbehave.net/workflows/.github/workflows/spell-check.yml/badge.svg)](https://github.com/bbvch/xbehave.net/actions?query=workflow%3A.github%2Fworkflows%2Fspell-check.yml)_
 
 xBehave.net is an [xUnit.net](https://github.com/xunit/xunit) extension, available in [full](https://www.nuget.org/packages/Xbehave) or [minimal](https://www.nuget.org/packages/Xbehave.Core) form, for describing each step in a test with natural language.
 
-Platform support: [.NET Standard 1.1 and upwards](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+Platform support: [.NET Standard 2.0 and upwards](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
 ## Packages
 
