@@ -9,11 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{33269118-539
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTale", "src\LambdaTale\LambdaTale.csproj", "{37910B4A-996D-4DB1-816E-7ABAAE43CEC2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTale.Execution.dotnet", "src\LambdaTale.Execution\dotnet\LambdaTale.Execution.dotnet.csproj", "{27AB17E5-1796-4DBD-8FFE-99249114C93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTale.Execution", "src\LambdaTale.Execution\LambdaTale.Execution.csproj", "{27AB17E5-1796-4DBD-8FFE-99249114C93A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{41BB5C25-6084-4CA2-A9E8-EE35A1CA1DEA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTale.Test.dotnet", "tests\LambdaTale.Test\dotnet\LambdaTale.Test.dotnet.csproj", "{AB3C58C9-5EB0-419B-90F4-2835F997CC93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTale.Test", "tests\LambdaTale.Test\LambdaTale.Test.csproj", "{AB3C58C9-5EB0-419B-90F4-2835F997CC93}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{7FE5E741-9F2D-497B-8FAC-FF404D765FBE}"
 EndProject

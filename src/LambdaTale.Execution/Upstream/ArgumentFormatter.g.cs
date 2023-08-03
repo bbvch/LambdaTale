@@ -1,14 +1,8 @@
 // UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.4.1/Sdk/ArgumentFormatter.cs
-#pragma warning disable CA1305 // Specify IFormatProvider
-#pragma warning disable IDE0007 // Use implicit type
-#pragma warning disable IDE0011 // Add braces
-#pragma warning disable IDE0018 // Inline variable declaration
-#pragma warning disable IDE0019 // Use pattern matching
-#pragma warning disable IDE0020 // Use pattern matching
-#pragma warning disable IDE0022 // Use expression body for methods
-#pragma warning disable IDE0040 // Add accessibility modifiers
-#pragma warning disable IDE0045 // Convert to conditional expression
-#pragma warning disable IDE0046 // Convert to conditional expression
+#if XUNIT_NULLABLE
+#nullable enable
+#endif
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -57,14 +51,54 @@ namespace Xunit.Sdk
         /// Format the value for presentation.
         /// </summary>
         /// <param name="value">The value to be formatted.</param>
+        /// <param name="pointerPosition"></param>
+        /// <param name="errorIndex"></param>
         /// <returns>The formatted value.</returns>
-        public static string Format(object value)
+#if XUNIT_NULLABLE
+        public static string Format(object? value, out int? pointerPosition, int? errorIndex = null)
+#else
+        public static string Format(object value, out int? pointerPosition, int? errorIndex = null)
+#endif
         {
-            return Format(value, 1);
+            return Format(value, 1, out pointerPosition, errorIndex);
         }
 
-        static string Format(object value, int depth)
+        /// <summary>
+        /// Format the value for presentation.
+        /// </summary>
+        /// <param name="value">The value to be formatted.</param>
+        /// <param name="errorIndex"></param>
+        /// <returns>The formatted value.</returns>
+#if XUNIT_NULLABLE
+        public static string Format(object? value, int? errorIndex = null)
+#else
+        public static string Format(object value, int? errorIndex = null)
+#endif
         {
+            int? pointerPosition;
+
+            return Format(value, 1, out pointerPosition, errorIndex);
+        }
+
+#if XUNIT_NULLABLE
+        static string FormatInner(object? value, int depth)
+#else
+        static string FormatInner(object value, int depth)
+#endif
+        {
+            int? pointerPosition;
+
+            return Format(value, depth, out pointerPosition, null);
+        }
+
+#if XUNIT_NULLABLE
+        static string Format(object? value, int depth, out int? pointerPostion, int? errorIndex = null)
+#else
+        static string Format(object value, int depth, out int? pointerPostion, int? errorIndex = null)
+#endif
+        {
+            pointerPostion = null;
+
             if (value == null)
                 return "null";
 
@@ -75,22 +109,24 @@ namespace Xunit.Sdk
             try
             {
                 if (value.GetType().GetTypeInfo().IsEnum)
-                    return value.ToString().Replace(", ", " | ");
+                    return value.ToString()?.Replace(", ", " | ") ?? "null";
 
                 if (value is char)
                 {
                     var charValue = (char)value;
-                
+
                     if (charValue == '\'')
                         return @"'\''";
-                
+
                     // Take care of all of the escape sequences
+#if XUNIT_NULLABLE
+                    string? escapeSequence;
+#else
                     string escapeSequence;
+#endif
                     if (TryGetEscapeSequence(charValue, out escapeSequence))
-                    {
                         return $"'{escapeSequence}'";
-                    }
-                
+
                     if (char.IsLetterOrDigit(charValue) || char.IsPunctuation(charValue) || char.IsSymbol(charValue) || charValue == ' ')
                         return $"'{charValue}'";
 
@@ -104,11 +140,11 @@ namespace Xunit.Sdk
                 var stringParameter = value as string;
                 if (stringParameter != null)
                 {
-                    stringParameter = EscapeHexChars(stringParameter);
+                    stringParameter = EscapeString(stringParameter);
                     stringParameter = stringParameter.Replace(@"""", @"\"""); // escape double quotes
                     if (stringParameter.Length > MAX_STRING_LENGTH)
                     {
-                        string displayed = stringParameter.Substring(0, MAX_STRING_LENGTH);
+                        var displayed = stringParameter.Substring(0, MAX_STRING_LENGTH);
                         return $"\"{displayed}\"...";
                     }
 
@@ -119,19 +155,35 @@ namespace Xunit.Sdk
                 {
                     var enumerable = value as IEnumerable;
                     if (enumerable != null)
-                        return FormatEnumerable(enumerable.Cast<object>(), depth);
+                        return FormatEnumerable(enumerable.Cast<object>(), depth, errorIndex, out pointerPostion);
                 }
                 catch
                 {
                     // Sometimes enumerables cannot be enumerated when being, and instead thrown an exception.
                     // This could be, for example, because they require state that is not provided by Xunit.
-                    // In these cases, just continue formatting. 
+                    // In these cases, just continue formatting.
                 }
+
+                if (value is float)
+                    return $"{value:G9}";
+
+                if (value is double)
+                    return $"{value:G17}";
 
                 var type = value.GetType();
                 var typeInfo = type.GetTypeInfo();
                 if (typeInfo.IsValueType)
-                    return Convert.ToString(value, CultureInfo.CurrentCulture);
+                {
+                    if (typeInfo.IsGenericType && typeInfo.GetGenericTypeDefinition() == typeof(KeyValuePair<,>))
+                    {
+                        var k = typeInfo.GetDeclaredProperty("Key")?.GetValue(value, null);
+                        var v = typeInfo.GetDeclaredProperty("Value")?.GetValue(value, null);
+
+                        return $"[{Format(k)}] = {Format(v)}";
+                    }
+
+                    return Convert.ToString(value, CultureInfo.CurrentCulture) ?? "null";
+                }
 
                 var task = value as Task;
                 if (task != null)
@@ -144,7 +196,11 @@ namespace Xunit.Sdk
                 var toString = type.GetRuntimeMethod("ToString", EmptyTypes);
 
                 if (toString != null && toString.DeclaringType != typeof(object))
-                    return (string)toString.Invoke(value, EmptyObjects);
+#if XUNIT_NULLABLE
+                    return ((string?)toString.Invoke(value, EmptyObjects)) ?? "null";
+#else
+                    return ((string)toString.Invoke(value, EmptyObjects)) ?? "null";
+#endif
 
                 return FormatComplexValue(value, depth, type);
             }
@@ -161,22 +217,29 @@ namespace Xunit.Sdk
             if (depth == MAX_DEPTH)
                 return $"{type.Name} {{ ... }}";
 
-            var fields = type.GetRuntimeFields()
-                             .Where(f => f.IsPublic && !f.IsStatic)
-                             .Select(f => new { name = f.Name, value = WrapAndGetFormattedValue(() => f.GetValue(value), depth) });
-            var properties = type.GetRuntimeProperties()
-                                 .Where(p => p.GetMethod != null && p.GetMethod.IsPublic && !p.GetMethod.IsStatic)
-                                 .Select(p => new { name = p.Name, value = WrapAndGetFormattedValue(() => p.GetValue(value), depth) });
-            var parameters = fields.Concat(properties)
-                                   .OrderBy(p => p.name)
-                                   .Take(MAX_OBJECT_PARAMETER_COUNT + 1)
-                                   .ToList();
+            var fields =
+                type
+                    .GetRuntimeFields()
+                    .Where(f => f.IsPublic && !f.IsStatic)
+                    .Select(f => new { name = f.Name, value = WrapAndGetFormattedValue(() => f.GetValue(value), depth) });
+
+            var properties =
+                type
+                    .GetRuntimeProperties()
+                    .Where(p => p.GetMethod != null && p.GetMethod.IsPublic && !p.GetMethod.IsStatic)
+                    .Select(p => new { name = p.Name, value = WrapAndGetFormattedValue(() => p.GetValue(value), depth) });
+
+            var parameters =
+                fields
+                    .Concat(properties)
+                    .OrderBy(p => p.name)
+                    .Take(MAX_OBJECT_PARAMETER_COUNT + 1)
+                    .ToList();
 
             if (parameters.Count == 0)
                 return $"{type.Name} {{ }}";
 
-            var formattedParameters = string.Join(", ", parameters.Take(MAX_OBJECT_PARAMETER_COUNT)
-                                                                  .Select(p => $"{p.name} = {p.value}"));
+            var formattedParameters = string.Join(", ", parameters.Take(MAX_OBJECT_PARAMETER_COUNT).Select(p => $"{p.name} = {p.value}"));
 
             if (parameters.Count > MAX_OBJECT_PARAMETER_COUNT)
                 formattedParameters += ", ...";
@@ -184,16 +247,55 @@ namespace Xunit.Sdk
             return $"{type.Name} {{ {formattedParameters} }}";
         }
 
-        static string FormatEnumerable(IEnumerable<object> enumerableValues, int depth)
+        static string FormatEnumerable(IEnumerable<object> enumerableValues, int depth, int? neededIndex, out int? pointerPostion)
         {
+            pointerPostion = null;
+
             if (depth == MAX_DEPTH)
                 return "[...]";
 
-            var values = enumerableValues.Take(MAX_ENUMERABLE_LENGTH + 1).ToList();
-            var printedValues = string.Join(", ", values.Take(MAX_ENUMERABLE_LENGTH).Select(x => Format(x, depth + 1)));
+            var printedValues = string.Empty;
 
-            if (values.Count > MAX_ENUMERABLE_LENGTH)
-                printedValues += ", ...";
+            if (neededIndex.HasValue)
+            {
+                var enumeratedValues = enumerableValues.ToList();
+
+                var half = (int)Math.Floor(MAX_ENUMERABLE_LENGTH / 2m);
+                var startIndex = Math.Max(0, neededIndex.Value - half);
+                var endIndex = Math.Min(enumeratedValues.Count, startIndex + MAX_ENUMERABLE_LENGTH);
+                startIndex = Math.Max(0, endIndex - MAX_ENUMERABLE_LENGTH);
+
+                var leftCount = neededIndex.Value - startIndex;
+
+                if (startIndex != 0)
+                    printedValues += "..., ";
+
+                var leftValues = enumeratedValues.Skip(startIndex).Take(leftCount).ToList();
+                var rightValues = enumeratedValues.Skip(startIndex + leftCount).Take(MAX_ENUMERABLE_LENGTH - leftCount + 1).ToList();
+
+                // Values to the left of the difference
+                if (leftValues.Count > 0)
+                {
+                    printedValues += string.Join(", ", leftValues.Select(x => FormatInner(x, depth + 1)));
+
+                    if (rightValues.Count > 0)
+                        printedValues += ", ";
+                }
+
+                pointerPostion = printedValues.Length + 1;
+
+                // Difference value and values to the right
+                printedValues += string.Join(", ", rightValues.Take(MAX_ENUMERABLE_LENGTH - leftCount).Select(x => FormatInner(x, depth + 1)));
+                if (leftValues.Count + rightValues.Count > MAX_ENUMERABLE_LENGTH)
+                    printedValues += ", ...";
+            }
+            else
+            {
+                var values = enumerableValues.Take(MAX_ENUMERABLE_LENGTH + 1).ToList();
+                printedValues += string.Join(", ", values.Take(MAX_ENUMERABLE_LENGTH).Select(x => FormatInner(x, depth + 1)));
+                if (values.Count > MAX_ENUMERABLE_LENGTH)
+                    printedValues += ", ...";
+            }
 
             return $"[{printedValues}]";
         }
@@ -208,11 +310,19 @@ namespace Xunit.Sdk
             {
                 var rank = typeInfo.GetArrayRank();
                 arraySuffix += $"[{new string(',', rank - 1)}]";
+#if XUNIT_NULLABLE
+                typeInfo = typeInfo.GetElementType()!.GetTypeInfo();
+#else
                 typeInfo = typeInfo.GetElementType().GetTypeInfo();
+#endif
             }
 
             // Map C# built-in type names
+#if XUNIT_NULLABLE
+            string? result;
+#else
             string result;
+#endif
             if (TypeMappings.TryGetValue(typeInfo, out result))
                 return result + arraySuffix;
 
@@ -240,15 +350,19 @@ namespace Xunit.Sdk
             return name + arraySuffix;
         }
 
+#if XUNIT_NULLABLE
+        static string WrapAndGetFormattedValue(Func<object?> getter, int depth)
+#else
         static string WrapAndGetFormattedValue(Func<object> getter, int depth)
+#endif
         {
             try
             {
-                return Format(getter(), depth + 1);
+                return FormatInner(getter(), depth + 1);
             }
             catch (Exception ex)
             {
-                return $"(throws {UnwrapException(ex).GetType().Name})";
+                return $"(throws {UnwrapException(ex)?.GetType().Name})";
             }
         }
 
@@ -257,20 +371,24 @@ namespace Xunit.Sdk
             while (true)
             {
                 var tiex = ex as TargetInvocationException;
-                if (tiex == null)
+                if (tiex == null || tiex.InnerException == null)
                     return ex;
 
                 ex = tiex.InnerException;
             }
         }
-        
-        static string EscapeHexChars(string s)
+
+        internal static string EscapeString(string s)
         {
             var builder = new StringBuilder(s.Length);
-            for (int i = 0; i < s.Length; i++)
+            for (var i = 0; i < s.Length; i++)
             {
-                char ch = s[i];
+                var ch = s[i];
+#if XUNIT_NULLABLE
+                string? escapeSequence;
+#else
                 string escapeSequence;
+#endif
                 if (TryGetEscapeSequence(ch, out escapeSequence))
                     builder.Append(escapeSequence);
                 else if (ch < 32) // C0 control char
@@ -291,11 +409,15 @@ namespace Xunit.Sdk
             }
             return builder.ToString();
         }
-        
+
+#if XUNIT_NULLABLE
+        static bool TryGetEscapeSequence(char ch, out string? value)
+#else
         static bool TryGetEscapeSequence(char ch, out string value)
+#endif
         {
             value = null;
-            
+
             if (ch == '\t') // tab
                 value = @"\t";
             if (ch == '\n') // newline
@@ -314,7 +436,7 @@ namespace Xunit.Sdk
                 value = @"\0";
             if (ch == '\\') // backslash
                 value = @"\\";
-            
+
             return value != null;
         }
     }
