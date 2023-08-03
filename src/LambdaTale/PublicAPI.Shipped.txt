@@ -1,0 +1,62 @@
+LambdaTale.BackgroundAttribute
+LambdaTale.BackgroundAttribute.BackgroundAttribute() -> void
+LambdaTale.BeforeAfterScenarioAttribute
+LambdaTale.BeforeAfterScenarioAttribute.BeforeAfterScenarioAttribute() -> void
+LambdaTale.DisposableExtensions
+LambdaTale.ExampleAttribute
+LambdaTale.ExampleAttribute.ExampleAttribute(params object[] data) -> void
+LambdaTale.IStepBuilderExtensions
+LambdaTale.IStepDefinitionExtensions
+LambdaTale.RemainingSteps
+LambdaTale.RemainingSteps.Run = 1 -> LambdaTale.RemainingSteps
+LambdaTale.RemainingSteps.Skip = 0 -> LambdaTale.RemainingSteps
+LambdaTale.ScenarioAttribute
+LambdaTale.ScenarioAttribute.ScenarioAttribute() -> void
+LambdaTale.Sdk.CurrentThread
+LambdaTale.Sdk.GetStepDisplayText
+LambdaTale.Sdk.IFilter<T>
+LambdaTale.Sdk.IFilter<T>.Filter(System.Collections.Generic.IEnumerable<T> source) -> System.Collections.Generic.IEnumerable<T>
+LambdaTale.Sdk.IScenario
+LambdaTale.Sdk.IScenario.DisplayName.get -> string
+LambdaTale.Sdk.IScenario.ScenarioOutline.get -> Xunit.Sdk.IXunitTestCase
+LambdaTale.Sdk.IStep
+LambdaTale.Sdk.IStep.Scenario.get -> LambdaTale.Sdk.IScenario
+LambdaTale.Sdk.IStepBuilder
+LambdaTale.Sdk.IStepBuilder.OnFailure(LambdaTale.RemainingSteps behavior) -> LambdaTale.Sdk.IStepBuilder
+LambdaTale.Sdk.IStepBuilder.Skip(string reason) -> LambdaTale.Sdk.IStepBuilder
+LambdaTale.Sdk.IStepBuilder.Teardown(System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task> action) -> LambdaTale.Sdk.IStepBuilder
+LambdaTale.Sdk.IStepContext
+LambdaTale.Sdk.IStepContext.Step.get -> LambdaTale.Sdk.IStep
+LambdaTale.Sdk.IStepContext.Using(System.IDisposable disposable) -> LambdaTale.Sdk.IStepContext
+LambdaTale.Sdk.IStepDefinition
+LambdaTale.Sdk.IStepDefinition.Body.get -> System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task>
+LambdaTale.Sdk.IStepDefinition.Body.set -> void
+LambdaTale.Sdk.IStepDefinition.DisplayText(LambdaTale.Sdk.GetStepDisplayText func) -> LambdaTale.Sdk.IStepDefinition
+LambdaTale.Sdk.IStepDefinition.DisplayTextFunc.get -> LambdaTale.Sdk.GetStepDisplayText
+LambdaTale.Sdk.IStepDefinition.DisplayTextFunc.set -> void
+LambdaTale.Sdk.IStepDefinition.FailureBehavior.get -> LambdaTale.RemainingSteps
+LambdaTale.Sdk.IStepDefinition.FailureBehavior.set -> void
+LambdaTale.Sdk.IStepDefinition.OnFailure(LambdaTale.RemainingSteps behavior) -> LambdaTale.Sdk.IStepDefinition
+LambdaTale.Sdk.IStepDefinition.Skip(string reason) -> LambdaTale.Sdk.IStepDefinition
+LambdaTale.Sdk.IStepDefinition.SkipReason.get -> string
+LambdaTale.Sdk.IStepDefinition.SkipReason.set -> void
+LambdaTale.Sdk.IStepDefinition.Teardown(System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task> action) -> LambdaTale.Sdk.IStepDefinition
+LambdaTale.Sdk.IStepDefinition.Teardowns.get -> System.Collections.Generic.ICollection<System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task>>
+LambdaTale.Sdk.IStepDefinition.Text.get -> string
+LambdaTale.Sdk.IStepDefinition.Text.set -> void
+LambdaTale.StringExtensions
+override LambdaTale.ExampleAttribute.GetData(System.Reflection.MethodInfo testMethod) -> System.Collections.Generic.IEnumerable<object[]>
+static LambdaTale.DisposableExtensions.Using<T>(this T disposable, LambdaTale.Sdk.IStepContext stepContext) -> T
+static LambdaTale.IStepBuilderExtensions.Teardown(this LambdaTale.Sdk.IStepBuilder stepBuilder, System.Action action) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.IStepBuilderExtensions.Teardown(this LambdaTale.Sdk.IStepBuilder stepBuilder, System.Action<LambdaTale.Sdk.IStepContext> action) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.IStepBuilderExtensions.Teardown(this LambdaTale.Sdk.IStepBuilder stepBuilder, System.Func<System.Threading.Tasks.Task> action) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.IStepDefinitionExtensions.Teardown(this LambdaTale.Sdk.IStepDefinition stepDefinition, System.Action action) -> LambdaTale.Sdk.IStepDefinition
+static LambdaTale.IStepDefinitionExtensions.Teardown(this LambdaTale.Sdk.IStepDefinition stepDefinition, System.Action<LambdaTale.Sdk.IStepContext> action) -> LambdaTale.Sdk.IStepDefinition
+static LambdaTale.IStepDefinitionExtensions.Teardown(this LambdaTale.Sdk.IStepDefinition stepDefinition, System.Func<System.Threading.Tasks.Task> action) -> LambdaTale.Sdk.IStepDefinition
+static LambdaTale.Sdk.CurrentThread.Add(LambdaTale.Sdk.IStepDefinition item) -> void
+static LambdaTale.Sdk.CurrentThread.EnterStepDefinitionContext() -> System.IDisposable
+static LambdaTale.Sdk.CurrentThread.StepDefinitions.get -> System.Collections.Generic.IEnumerable<LambdaTale.Sdk.IStepDefinition>
+static LambdaTale.StringExtensions.x(this string text, System.Action body) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.StringExtensions.x(this string text, System.Action<LambdaTale.Sdk.IStepContext> body) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.StringExtensions.x(this string text, System.Func<System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.StringExtensions.x(this string text, System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder

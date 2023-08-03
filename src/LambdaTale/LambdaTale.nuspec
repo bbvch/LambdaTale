@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <authors>Raphael Schweizer, Adam Ralph, LambdaTale and xBehave.net contributors</authors>
+    <description>Includes the libraries for writing tests with LambdaTale.
+
+Installing this package installs xunit.core.</description>
+    <id>bbv.LambdaTale</id>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/bbvch/LambdaTale</projectUrl>
+    <releaseNotes>https://github.com/bbvch/LambdaTale/blob/main/CHANGELOG.md</releaseNotes>
+    <repository type="$RepositoryType$" url="$RepositoryUrl$" commit="$RepositoryCommit$" />
+    <title>LambdaTale [Core Testing Framework]</title>
+    <version>$Version$</version>
+    <dependencies>
+      <dependency id="xunit.core" version="[2.4.0, 2.5)" />
+      <dependency id="xunit.extensibility.execution" version="[2.4.0, 2.5)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard2.0\LambdaTale.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\LambdaTale.pdb" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\LambdaTale.xml" target="lib\netstandard2.0" />
+    <file src="..\LambdaTale.Execution\dotnet\bin\Release\netstandard2.0\LambdaTale.Execution.dotnet.dll" target="lib\netstandard2.0" />
+    <file src="..\LambdaTale.Execution\dotnet\bin\Release\netstandard2.0\LambdaTale.Execution.dotnet.pdb" target="lib\netstandard2.0" />
+  </files>
+</package>
