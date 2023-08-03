@@ -13,7 +13,7 @@ namespace Xbehave.Test
     // I want to run automated acceptance tests describing each feature of my product using scenarios
     public class ScenarioFeature : Feature
     {
-        // NOTE (adamralph): a plain xunit fact to prove that plain scenarios work in 2.x
+        // a plain xunit fact to prove that plain scenarios work in 2.x
         [Fact]
         public void ScenarioWithTwoPassingStepsAndOneFailingStepYieldsTwoPassesAndOneFail()
         {
