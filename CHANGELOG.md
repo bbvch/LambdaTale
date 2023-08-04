@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.5.000
+## 2.5.0
 
 Updated to xunit.core 2.5.0
 
