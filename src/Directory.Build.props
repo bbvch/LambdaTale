@@ -2,7 +2,11 @@
 
   <Import Project="..\Directory.Build.props"/>
 
-  <!-- version -->
+  <PropertyGroup>
+    <AnalysisMode>All</AnalysisMode>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
   </ItemGroup>
