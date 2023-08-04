@@ -1,6 +1,7 @@
-# bbv.LambdaTale
+# LambdaTale
 
-LambdaTale is an [xUnit.net](https://github.com/xunit/xunit) extension for describing each step in a test with natural language.
+_[![LambdaTale NuGet version](https://img.shields.io/nuget/v/bbv.LambdaTale?label=bbv.LambdaTale
+)](https://www.nuget.org/packages/bbv.LambdaTale)_ is a [xUnit.net](https://github.com/xunit/xunit) extension for describing each step in a test with natural language.
 
 > [!NOTE]
 > This is a fork of [xBehave.net](https://github.com/adamralph/xbehave.net). Adam, thank you very much!
@@ -11,6 +12,34 @@ _[![Lint](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/lint.y
 _[![Spell check](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/spell-check.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Fspell-check.yml)_
 
 Platform support: [.NET Standard 2.0 and upwards](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+
+```csharp
+using System.Threading.Tasks;
+using LambdaTale;
+
+namespace Your.Tests;
+
+public class SomeFeature
+{
+    public class OracleService
+    {
+        public Task<int> Run() => Task.FromResult(42);
+    }
+
+    [Scenario]
+    public void SimpleDemo(int answer, OracleService sut)
+    {
+        "Given a magic oracle"
+            .x(() => sut = new OracleService());
+
+        "the answer"
+            .x(async () => answer = await sut.Run());
+
+        "is always known"
+            .x(() => Xunit.Assert.Equal(42, answer));
+    }
+}
+```
 
 ## Packages
 
