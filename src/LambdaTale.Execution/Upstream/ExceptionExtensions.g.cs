@@ -1,16 +1,10 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/xunit/2.4.1/src/common/ExceptionExtensions.cs
-#pragma warning disable IDE0011 // Add braces
-#pragma warning disable IDE0019 // Use pattern matching
-#pragma warning disable IDE0022 // Use expression body for methods
-#pragma warning disable IDE0040 // Add accessibility modifiers
+// UPSTREAM: https://raw.githubusercontent.com/xunit/xunit/2.5.0/src/common/ExceptionExtensions.cs
 using System;
 using System.Reflection;
 
 static class ExceptionExtensions
 {
-#if NET35
     const string RETHROW_MARKER = "$$RethrowMarker$$";
-#endif
 
     /// <summary>
     /// Rethrows an exception object without losing the existing stack trace information

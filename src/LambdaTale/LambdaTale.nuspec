@@ -13,8 +13,8 @@ Installing this package installs xunit.core.</description>
     <title>LambdaTale [Core Testing Framework]</title>
     <version>$Version$</version>
     <dependencies>
-      <dependency id="xunit.core" version="[2.4.0, 2.5)" />
-      <dependency id="xunit.extensibility.execution" version="[2.4.0, 2.5)" />
+      <dependency id="xunit.core" version="[2.5.0, 2.6)" />
+      <dependency id="xunit.extensibility.execution" version="[2.5.0, 2.6)" />
     </dependencies>
   </metadata>
   <files>
