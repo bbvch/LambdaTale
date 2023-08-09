@@ -2,15 +2,14 @@
 <package>
   <metadata>
     <authors>Raphael Schweizer, Adam Ralph, LambdaTale and xBehave.net contributors</authors>
-    <description>Includes the libraries for writing tests with LambdaTale.
-
-Installing this package installs xunit.core.</description>
+    <description>Provides the libraries for writing xunit tests with LambdaTale.</description>
     <id>bbv.LambdaTale</id>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/bbvch/LambdaTale</projectUrl>
     <releaseNotes>https://github.com/bbvch/LambdaTale/blob/main/CHANGELOG.md</releaseNotes>
     <repository type="$RepositoryType$" url="$RepositoryUrl$" commit="$RepositoryCommit$" />
-    <title>LambdaTale [Core Testing Framework]</title>
+    <title>LambdaTale</title>
+    <tags>testing xunit</tags>
     <version>$Version$</version>
     <dependencies>
       <dependency id="xunit.core" version="[2.5.0, 2.6)" />
