@@ -61,7 +61,7 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
 
                     var theoryDisplayName = info.ScenarioDisplayName;
                     var test = new Scenario(this.TestCase, theoryDisplayName);
-                    var skipReason = this.SkipReason ?? dataAttribute.GetNamedArgument<string>("Skip");
+                    var skipReason = this.SkipReason ?? dataAttribute.GetNamedArgument<string>(nameof(DataAttribute.Skip));
                     this.scenarioRunners.Add(new ScenarioRunner(test, this.MessageBus, this.TestClass, this.ConstructorArguments, methodToRun, convertedDataRow, skipReason, this.BeforeAfterAttributes, this.Aggregator, this.CancellationTokenSource));
                 }
             }

@@ -10,7 +10,10 @@ Target(
     DependsOn("restore"),
     () => RunAsync("dotnet", $"build --no-restore {commonArgs}"));
 
-Target("format", () => RunAsync("dotnet", "format --verify-no-changes"));
+Target(
+    "format",
+    DependsOn("restore"),
+    () => RunAsync("dotnet", "format --no-restore --verify-no-changes"));
 
 Target(
     "pack",
