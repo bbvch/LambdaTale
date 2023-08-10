@@ -5,37 +5,36 @@ using System.Threading.Tasks;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace LambdaTale.Execution
+namespace LambdaTale.Execution;
+
+public class ScenarioOutlineTestCase : XunitTestCase
 {
-    public class ScenarioOutlineTestCase : XunitTestCase
+    public ScenarioOutlineTestCase(
+        IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, TestMethodDisplayOptions defaultMethodDisplayOptions, ITestMethod testMethod)
+        : base(diagnosticMessageSink, defaultMethodDisplay, defaultMethodDisplayOptions, testMethod)
     {
-        public ScenarioOutlineTestCase(
-            IMessageSink diagnosticMessageSink, TestMethodDisplay defaultMethodDisplay, TestMethodDisplayOptions defaultMethodDisplayOptions, ITestMethod testMethod)
-            : base(diagnosticMessageSink, defaultMethodDisplay, defaultMethodDisplayOptions, testMethod)
-        {
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Called by the de-serializer", true)]
-        public ScenarioOutlineTestCase()
-        {
-        }
-
-        public override async Task<RunSummary> RunAsync(
-            IMessageSink diagnosticMessageSink,
-            IMessageBus messageBus,
-            object[] constructorArguments,
-            ExceptionAggregator aggregator,
-            CancellationTokenSource cancellationTokenSource) =>
-                await new ScenarioOutlineTestCaseRunner(
-                        diagnosticMessageSink,
-                        this,
-                        this.DisplayName,
-                        this.SkipReason,
-                        constructorArguments,
-                        messageBus,
-                        aggregator,
-                        cancellationTokenSource)
-                    .RunAsync();
     }
+
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("Called by the de-serializer", true)]
+    public ScenarioOutlineTestCase()
+    {
+    }
+
+    public override async Task<RunSummary> RunAsync(
+        IMessageSink diagnosticMessageSink,
+        IMessageBus messageBus,
+        object[] constructorArguments,
+        ExceptionAggregator aggregator,
+        CancellationTokenSource cancellationTokenSource) =>
+        await new ScenarioOutlineTestCaseRunner(
+                diagnosticMessageSink,
+                this,
+                this.DisplayName,
+                this.SkipReason,
+                constructorArguments,
+                messageBus,
+                aggregator,
+                cancellationTokenSource)
+            .RunAsync();
 }

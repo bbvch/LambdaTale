@@ -5,39 +5,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xunit.Sdk;
 
-namespace LambdaTale.Execution
+namespace LambdaTale.Execution;
+
+public static class Invoker
 {
-    public static class Invoker
+    public static async Task Invoke(this Func<Task> action, ExceptionAggregator aggregator, ExecutionTimer timer)
     {
-        public static async Task Invoke(this Func<Task> action, ExceptionAggregator aggregator, ExecutionTimer timer)
+        var oldSyncContext = SynchronizationContext.Current;
+        try
         {
-            var oldSyncContext = SynchronizationContext.Current;
-            try
-            {
-                var asyncSyncContext = new AsyncTestSyncContext(oldSyncContext);
-                SetSynchronizationContext(asyncSyncContext);
+            var asyncSyncContext = new AsyncTestSyncContext(oldSyncContext);
+            SetSynchronizationContext(asyncSyncContext);
 
-                await aggregator?.RunAsync(
-                    () => timer.AggregateAsync(
-                        async () =>
+            await aggregator?.RunAsync(
+                () => timer.AggregateAsync(
+                    async () =>
+                    {
+                        await action();
+                        var ex = await asyncSyncContext.WaitForCompletionAsync();
+                        if (ex != null)
                         {
-                            await action();
-                            var ex = await asyncSyncContext.WaitForCompletionAsync();
-                            if (ex != null)
-                            {
-                                aggregator.Add(ex);
-                            }
-                        }));
-            }
-            finally
-            {
-                SetSynchronizationContext(oldSyncContext);
-            }
+                            aggregator.Add(ex);
+                        }
+                    }));
         }
-
-        [SuppressMessage("Microsoft.Security", "CA2136:TransparencyAnnotationsShouldNotConflictFxCopRule", Justification = "From xunit.")]
-        [SecuritySafeCritical]
-        private static void SetSynchronizationContext(SynchronizationContext context) =>
-            SynchronizationContext.SetSynchronizationContext(context);
+        finally
+        {
+            SetSynchronizationContext(oldSyncContext);
+        }
     }
+
+    [SuppressMessage("Microsoft.Security", "CA2136:TransparencyAnnotationsShouldNotConflictFxCopRule", Justification = "From xunit.")]
+    [SecuritySafeCritical]
+    private static void SetSynchronizationContext(SynchronizationContext context) =>
+        SynchronizationContext.SetSynchronizationContext(context);
 }

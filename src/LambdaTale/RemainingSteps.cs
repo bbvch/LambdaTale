@@ -1,21 +1,20 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace LambdaTale
+namespace LambdaTale;
+
+/// <summary>
+/// Indicates the behavior of remaining steps when a step fails.
+/// </summary>
+[SuppressMessage("Microsoft.Naming", "CA1717:OnlyFlagsEnumsShouldHavePluralNames", Justification = "Makes sense here.")]
+public enum RemainingSteps
 {
     /// <summary>
-    /// Indicates the behavior of remaining steps when a step fails.
+    /// Skip remaining steps.
     /// </summary>
-    [SuppressMessage("Microsoft.Naming", "CA1717:OnlyFlagsEnumsShouldHavePluralNames", Justification = "Makes sense here.")]
-    public enum RemainingSteps
-    {
-        /// <summary>
-        /// Skip remaining steps.
-        /// </summary>
-        Skip = 0,
+    Skip = 0,
 
-        /// <summary>
-        /// Run remaining steps.
-        /// </summary>
-        Run = 1,
-    }
+    /// <summary>
+    /// Run remaining steps.
+    /// </summary>
+    Run = 1,
 }

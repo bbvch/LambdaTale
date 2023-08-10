@@ -3,23 +3,22 @@ using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace LambdaTale.Test.Infrastructure
-{
-    public static class Xunit2Extensions
-    {
-        public static Queue<IMessageSinkMessage> Run(this Xunit2 runner, Queue<ITestCase> testCases, TestAssemblyConfiguration testAssemblyConfiguration)
-        {
-            if (!testCases.Any())
-            {
-                return new Queue<IMessageSinkMessage>();
-            }
+namespace LambdaTale.Test.Infrastructure;
 
-            using (var sink = new SpyMessageSink<ITestCollectionFinished>())
-            {
-                runner.RunTests(testCases, sink, TestFrameworkOptions.ForExecution(testAssemblyConfiguration));
-                sink.Finished.Wait();
-                return sink.Messages;
-            }
+public static class Xunit2Extensions
+{
+    public static Queue<IMessageSinkMessage> Run(this Xunit2 runner, Queue<ITestCase> testCases, TestAssemblyConfiguration testAssemblyConfiguration)
+    {
+        if (!testCases.Any())
+        {
+            return new Queue<IMessageSinkMessage>();
+        }
+
+        using (var sink = new SpyMessageSink<ITestCollectionFinished>())
+        {
+            runner.RunTests(testCases, sink, TestFrameworkOptions.ForExecution(testAssemblyConfiguration));
+            sink.Finished.Wait();
+            return sink.Messages;
         }
     }
 }

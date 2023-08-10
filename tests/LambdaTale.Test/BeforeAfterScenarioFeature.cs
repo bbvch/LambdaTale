@@ -5,129 +5,128 @@ using LambdaTale.Test.Infrastructure;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace LambdaTale.Test
+namespace LambdaTale.Test;
+
+public class BeforeAfterScenarioFeature : Feature
 {
-    public class BeforeAfterScenarioFeature : Feature
+    [Background]
+    public void Background() =>
+        "Given no events have occurred"
+            .x(() => typeof(BeforeAfterScenarioFeature).ClearTestEvents());
+
+    [Scenario]
+    public void BeforeAfterAttribute(Type feature, ITestResultMessage[] results)
     {
-        [Background]
-        public void Background() =>
-            "Given no events have occurred"
-                .x(() => typeof(BeforeAfterScenarioFeature).ClearTestEvents());
+        "Given a scenario with a before and after attribute"
+            .x(() => feature = typeof(ScenarioWithBeforeAfterScenarioAttribute));
 
+        "When I run the scenario"
+            .x(() => results = this.Run<ITestResultMessage>(feature));
+
+        "Then the attributes before and after methods are called before and after the scenario"
+            .x(() => Assert.Equal(
+                new[] { "before1", "step1", "step2", "step3", "after1" },
+                typeof(BeforeAfterScenarioFeature).GetTestEvents()));
+    }
+
+    [Scenario]
+    public void ThrowsBefore(Type feature, ITestResultMessage[] results)
+    {
+        "Given a scenario with a throw before attribute"
+            .x(() => feature = typeof(ScenarioWithThrowBeforeAttribute));
+
+        "When I run the scenario"
+            .x(() => results = this.Run<ITestResultMessage>(feature));
+
+        "Then there is a single test failure"
+            .x(() => Assert.Single(results.OfType<ITestFailed>()));
+    }
+
+    [Scenario]
+    public void ThrowsAfter(Type feature, ITestResultMessage[] results)
+    {
+        "Given a scenario with a throw after attribute"
+            .x(() => feature = typeof(ScenarioWithThrowAfterAttribute));
+
+        "When I run the scenario"
+            .x(() => results = this.Run<ITestResultMessage>(feature));
+
+        "Then there is a single test failure"
+            .x(() => Assert.Single(results.OfType<ITestFailed>()));
+    }
+
+    private static class ScenarioWithBeforeAfterScenarioAttribute
+    {
+        [BeforeAfter]
         [Scenario]
-        public void BeforeAfterAttribute(Type feature, ITestResultMessage[] results)
+        public static void Scenario()
         {
-            "Given a scenario with a before and after attribute"
-                .x(() => feature = typeof(ScenarioWithBeforeAfterScenarioAttribute));
+            "Given"
+                .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step1"));
 
-            "When I run the scenario"
-                .x(() => results = this.Run<ITestResultMessage>(feature));
+            "When"
+                .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step2"));
 
-            "Then the attributes before and after methods are called before and after the scenario"
-                .x(() => Assert.Equal(
-                    new[] { "before1", "step1", "step2", "step3", "after1" },
-                    typeof(BeforeAfterScenarioFeature).GetTestEvents()));
+            "Then"
+                .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step3"));
         }
+    }
 
+    private static class ScenarioWithThrowBeforeAttribute
+    {
+        [ThrowBefore]
         [Scenario]
-        public void ThrowsBefore(Type feature, ITestResultMessage[] results)
+        public static void Scenario()
         {
-            "Given a scenario with a throw before attribute"
-                .x(() => feature = typeof(ScenarioWithThrowBeforeAttribute));
+            "Given"
+                .x(() => { });
 
-            "When I run the scenario"
-                .x(() => results = this.Run<ITestResultMessage>(feature));
+            "When"
+                .x(() => { });
 
-            "Then there is a single test failure"
-                .x(() => Assert.Single(results.OfType<ITestFailed>()));
+            "Then"
+                .x(() => { });
         }
+    }
 
+    private static class ScenarioWithThrowAfterAttribute
+    {
+        [ThrowAfter]
         [Scenario]
-        public void ThrowsAfter(Type feature, ITestResultMessage[] results)
+        public static void Scenario()
         {
-            "Given a scenario with a throw after attribute"
-                .x(() => feature = typeof(ScenarioWithThrowAfterAttribute));
+            "Given"
+                .x(() => { });
 
-            "When I run the scenario"
-                .x(() => results = this.Run<ITestResultMessage>(feature));
+            "When"
+                .x(() => { });
 
-            "Then there is a single test failure"
-                .x(() => Assert.Single(results.OfType<ITestFailed>()));
+            "Then"
+                .x(() => { });
         }
+    }
 
-        private static class ScenarioWithBeforeAfterScenarioAttribute
-        {
-            [BeforeAfter]
-            [Scenario]
-            public static void Scenario()
-            {
-                "Given"
-                    .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step1"));
+    private sealed class BeforeAfter : BeforeAfterScenarioAttribute
+    {
+        private static int beforeCount;
+        private static int afterCount;
 
-                "When"
-                    .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step2"));
+        public override void Before(System.Reflection.MethodInfo methodUnderTest) =>
+            typeof(BeforeAfterScenarioFeature)
+                .SaveTestEvent("before" + (++beforeCount).ToString(CultureInfo.InvariantCulture));
 
-                "Then"
-                    .x(() => typeof(BeforeAfterScenarioFeature).SaveTestEvent("step3"));
-            }
-        }
+        public override void After(System.Reflection.MethodInfo methodUnderTest) =>
+            typeof(BeforeAfterScenarioFeature)
+                .SaveTestEvent("after" + (++afterCount).ToString(CultureInfo.InvariantCulture));
+    }
 
-        private static class ScenarioWithThrowBeforeAttribute
-        {
-            [ThrowBefore]
-            [Scenario]
-            public static void Scenario()
-            {
-                "Given"
-                    .x(() => { });
+    private sealed class ThrowBefore : BeforeAfterScenarioAttribute
+    {
+        public override void Before(System.Reflection.MethodInfo methodUnderTest) => throw new InvalidOperationException();
+    }
 
-                "When"
-                    .x(() => { });
-
-                "Then"
-                    .x(() => { });
-            }
-        }
-
-        private static class ScenarioWithThrowAfterAttribute
-        {
-            [ThrowAfter]
-            [Scenario]
-            public static void Scenario()
-            {
-                "Given"
-                    .x(() => { });
-
-                "When"
-                    .x(() => { });
-
-                "Then"
-                    .x(() => { });
-            }
-        }
-
-        private sealed class BeforeAfter : BeforeAfterScenarioAttribute
-        {
-            private static int beforeCount;
-            private static int afterCount;
-
-            public override void Before(System.Reflection.MethodInfo methodUnderTest) =>
-                typeof(BeforeAfterScenarioFeature)
-                    .SaveTestEvent("before" + (++beforeCount).ToString(CultureInfo.InvariantCulture));
-
-            public override void After(System.Reflection.MethodInfo methodUnderTest) =>
-                typeof(BeforeAfterScenarioFeature)
-                    .SaveTestEvent("after" + (++afterCount).ToString(CultureInfo.InvariantCulture));
-        }
-
-        private sealed class ThrowBefore : BeforeAfterScenarioAttribute
-        {
-            public override void Before(System.Reflection.MethodInfo methodUnderTest) => throw new InvalidOperationException();
-        }
-
-        private sealed class ThrowAfter : BeforeAfterScenarioAttribute
-        {
-            public override void After(System.Reflection.MethodInfo methodUnderTest) => throw new InvalidOperationException();
-        }
+    private sealed class ThrowAfter : BeforeAfterScenarioAttribute
+    {
+        public override void After(System.Reflection.MethodInfo methodUnderTest) => throw new InvalidOperationException();
     }
 }

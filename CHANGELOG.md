@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.1
+
+Fixed running tests from VS Test Explorer
+
 ## 2.5.0
 
 Updated to xunit.core 2.5.0
