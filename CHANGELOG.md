@@ -1,5 +1,13 @@
 # Changelog
 
+## vNext
+
+* use locked-mode restore in CI
+
+## 2.5.2
+
+Infrastructure maintenance release
+
 ## 2.5.1
 
 Fixed running tests from VS Test Explorer
