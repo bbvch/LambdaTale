@@ -3,34 +3,33 @@ using System.Threading;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace LambdaTale.Execution.Extensions
+namespace LambdaTale.Execution.Extensions;
+
+internal static class MessageBusExtensions
 {
-    internal static class MessageBusExtensions
+    public static void Queue(
+        this IMessageBus messageBus,
+        ITest test,
+        Func<ITest, IMessageSinkMessage> createTestResultMessage,
+        CancellationTokenSource cancellationTokenSource)
     {
-        public static void Queue(
-            this IMessageBus messageBus,
-            ITest test,
-            Func<ITest, IMessageSinkMessage> createTestResultMessage,
-            CancellationTokenSource cancellationTokenSource)
+        messageBus = messageBus ?? throw new ArgumentNullException(nameof(messageBus));
+
+        if (!messageBus.QueueMessage(new TestStarting(test)))
         {
-            messageBus = messageBus ?? throw new ArgumentNullException(nameof(messageBus));
-
-            if (!messageBus.QueueMessage(new TestStarting(test)))
+            cancellationTokenSource?.Cancel();
+        }
+        else
+        {
+            if (!messageBus.QueueMessage(createTestResultMessage?.Invoke(test)))
             {
                 cancellationTokenSource?.Cancel();
             }
-            else
-            {
-                if (!messageBus.QueueMessage(createTestResultMessage?.Invoke(test)))
-                {
-                    cancellationTokenSource?.Cancel();
-                }
-            }
+        }
 
-            if (!messageBus.QueueMessage(new TestFinished(test, 0, null)))
-            {
-                cancellationTokenSource?.Cancel();
-            }
+        if (!messageBus.QueueMessage(new TestFinished(test, 0, null)))
+        {
+            cancellationTokenSource?.Cancel();
         }
     }
 }

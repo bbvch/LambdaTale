@@ -6,47 +6,46 @@ using LambdaTale.Test.Infrastructure;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace LambdaTale.Test
+namespace LambdaTale.Test;
+
+public class AsyncScenarioFeature : Feature
 {
-    public class AsyncScenarioFeature : Feature
+    [Scenario]
+    public void AsyncScenario(Type feature, ITestResultMessage[] results)
+    {
+        "Given an async scenario that throws after yielding"
+            .x(() => feature = typeof(AsyncScenarioThatThrowsAfterYielding));
+
+        "When I run the scenario"
+            .x(() => results = this.Run<ITestResultMessage>(feature));
+
+        "Then the scenario fails"
+            .x(() => Assert.IsAssignableFrom<ITestFailed>(results.Single()));
+
+        "And the exception is the exception thrown after the yield"
+            .x(() => Assert.Equal("I yielded before this.", results.Cast<ITestFailed>().Single().Messages.Single()));
+    }
+
+    [Scenario]
+    public void NullStepBody() =>
+        "Given a null body"
+            .x((Func<Task>)null);
+
+    [Scenario]
+    public void NullContextualStepBody() =>
+        "Given a null body"
+            .x((Func<IStepContext, Task>)null);
+
+    private static class AsyncScenarioThatThrowsAfterYielding
     {
         [Scenario]
-        public void AsyncScenario(Type feature, ITestResultMessage[] results)
+        public static async Task Scenario()
         {
-            "Given an async scenario that throws after yielding"
-                .x(() => feature = typeof(AsyncScenarioThatThrowsAfterYielding));
+            "Given"
+                .x(() => { });
 
-            "When I run the scenario"
-                .x(() => results = this.Run<ITestResultMessage>(feature));
-
-            "Then the scenario fails"
-                .x(() => Assert.IsAssignableFrom<ITestFailed>(results.Single()));
-
-            "And the exception is the exception thrown after the yield"
-                .x(() => Assert.Equal("I yielded before this.", results.Cast<ITestFailed>().Single().Messages.Single()));
-        }
-
-        [Scenario]
-        public void NullStepBody() =>
-            "Given a null body"
-                .x((Func<Task>)null);
-
-        [Scenario]
-        public void NullContextualStepBody() =>
-            "Given a null body"
-                .x((Func<IStepContext, Task>)null);
-
-        private static class AsyncScenarioThatThrowsAfterYielding
-        {
-            [Scenario]
-            public static async Task Scenario()
-            {
-                "Given"
-                    .x(() => { });
-
-                await Task.Yield();
-                throw new InvalidOperationException("I yielded before this.");
-            }
+            await Task.Yield();
+            throw new InvalidOperationException("I yielded before this.");
         }
     }
 }

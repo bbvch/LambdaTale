@@ -3,20 +3,19 @@ using Xunit;
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace LambdaTale.Execution
+namespace LambdaTale.Execution;
+
+public class Scenario : LongLivedMarshalByRefObject, IScenario
 {
-    public class Scenario : LongLivedMarshalByRefObject, IScenario
+    public Scenario(IXunitTestCase scenarioOutline, string displayName)
     {
-        public Scenario(IXunitTestCase scenarioOutline, string displayName)
-        {
-            this.ScenarioOutline = scenarioOutline;
-            this.DisplayName = displayName;
-        }
-
-        public IXunitTestCase ScenarioOutline { get; }
-
-        public string DisplayName { get; }
-
-        public ITestCase TestCase => this.ScenarioOutline;
+        this.ScenarioOutline = scenarioOutline;
+        this.DisplayName = displayName;
     }
+
+    public IXunitTestCase ScenarioOutline { get; }
+
+    public string DisplayName { get; }
+
+    public ITestCase TestCase => this.ScenarioOutline;
 }

@@ -1,21 +1,20 @@
 using Xunit.Abstractions;
 using Xunit.Sdk;
 
-namespace LambdaTale.Sdk
+namespace LambdaTale.Sdk;
+
+/// <summary>
+/// Represents a scenario.
+/// </summary>
+public interface IScenario : ITest
 {
     /// <summary>
-    /// Represents a scenario.
+    /// Gets the display name of the scenario.
     /// </summary>
-    public interface IScenario : ITest
-    {
-        /// <summary>
-        /// Gets the display name of the scenario.
-        /// </summary>
-        new string DisplayName { get; }
+    new string DisplayName { get; }
 
-        /// <summary>
-        /// Gets the scenario outline this scenario belongs to.
-        /// </summary>
-        IXunitTestCase ScenarioOutline { get; }
-    }
+    /// <summary>
+    /// Gets the scenario outline this scenario belongs to.
+    /// </summary>
+    IXunitTestCase ScenarioOutline { get; }
 }

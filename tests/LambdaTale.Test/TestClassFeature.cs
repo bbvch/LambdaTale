@@ -4,66 +4,65 @@ using System.Threading;
 using LambdaTale.Test.Infrastructure;
 using Xunit;
 
-namespace LambdaTale.Test
+namespace LambdaTale.Test;
+
+public class TestClassFeature : Feature
 {
-    public class TestClassFeature : Feature
+    [Background]
+    public void Background() =>
+        "Given no events have occurred"
+            .x(() => typeof(TestClassFeature).ClearTestEvents());
+
+    [Scenario]
+    public void SingleScenario(Type feature)
     {
-        [Background]
-        public void Background() =>
-            "Given no events have occurred"
-                .x(() => typeof(TestClassFeature).ClearTestEvents());
+        "Given an instance scenario with three steps in a disposable type"
+            .x(() => feature = typeof(InstanceScenarioWithThreeStepsInADisposableType));
 
-        [Scenario]
-        public void SingleScenario(Type feature)
+        "When I run the scenario"
+            .x(() => this.Run(feature));
+
+        "Then an instance of the type is created and disposed once either side of the step execution"
+            .x(() => Assert.Equal(
+                new[] { "created1", "step1", "step2", "step3", "disposed1.1" },
+                typeof(TestClassFeature).GetTestEvents()));
+    }
+
+    private class InstanceScenarioWithThreeStepsInADisposableType : IDisposable
+    {
+        private static int instanceCount;
+        private readonly int instanceNumber;
+        private int disposalCount;
+
+        public InstanceScenarioWithThreeStepsInADisposableType()
         {
-            "Given an instance scenario with three steps in a disposable type"
-                .x(() => feature = typeof(InstanceScenarioWithThreeStepsInADisposableType));
-
-            "When I run the scenario"
-                .x(() => this.Run(feature));
-
-            "Then an instance of the type is created and disposed once either side of the step execution"
-                .x(() => Assert.Equal(
-                    new[] { "created1", "step1", "step2", "step3", "disposed1.1" },
-                    typeof(TestClassFeature).GetTestEvents()));
+            this.instanceNumber = Interlocked.Increment(ref instanceCount);
+            typeof(TestClassFeature).SaveTestEvent(
+                string.Concat("created", this.instanceNumber.ToString(CultureInfo.InvariantCulture)));
         }
 
-        private class InstanceScenarioWithThreeStepsInADisposableType : IDisposable
+        [Scenario]
+        public void Scenario()
         {
-            private static int instanceCount;
-            private readonly int instanceNumber;
-            private int disposalCount;
+            "Given"
+                .x(() => typeof(TestClassFeature).SaveTestEvent("step1"));
 
-            public InstanceScenarioWithThreeStepsInADisposableType()
-            {
-                this.instanceNumber = Interlocked.Increment(ref instanceCount);
-                typeof(TestClassFeature).SaveTestEvent(
-                    string.Concat("created", this.instanceNumber.ToString(CultureInfo.InvariantCulture)));
-            }
+            "When"
+                .x(() => typeof(TestClassFeature).SaveTestEvent("step2"));
 
-            [Scenario]
-            public void Scenario()
-            {
-                "Given"
-                    .x(() => typeof(TestClassFeature).SaveTestEvent("step1"));
+            "Then"
+                .x(() => typeof(TestClassFeature).SaveTestEvent("step3"));
+        }
 
-                "When"
-                    .x(() => typeof(TestClassFeature).SaveTestEvent("step2"));
+        public void Dispose()
+        {
+            var @event = string.Concat(
+                "disposed",
+                this.instanceNumber.ToString(CultureInfo.InvariantCulture),
+                ".",
+                (++this.disposalCount).ToString(CultureInfo.InvariantCulture));
 
-                "Then"
-                    .x(() => typeof(TestClassFeature).SaveTestEvent("step3"));
-            }
-
-            public void Dispose()
-            {
-                var @event = string.Concat(
-                    "disposed",
-                    this.instanceNumber.ToString(CultureInfo.InvariantCulture),
-                    ".",
-                    (++this.disposalCount).ToString(CultureInfo.InvariantCulture));
-
-                typeof(TestClassFeature).SaveTestEvent(@event);
-            }
+            typeof(TestClassFeature).SaveTestEvent(@event);
         }
     }
 }
