@@ -8,9 +8,9 @@ namespace LambdaTale.Test.Infrastructure;
 
 public sealed class SpyMessageSink<TFinalMessage> : LongLivedMarshalByRefObject, IMessageSink, IDisposable
 {
-    public ManualResetEventSlim Finished { get; } = new ManualResetEventSlim(initialState: false);
+    public ManualResetEventSlim Finished { get; } = new(initialState: false);
 
-    public Queue<IMessageSinkMessage> Messages { get; } = new Queue<IMessageSinkMessage>();
+    public Queue<IMessageSinkMessage> Messages { get; } = new();
 
     public void Dispose() => this.Finished.Dispose();
 

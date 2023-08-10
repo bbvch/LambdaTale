@@ -2,7 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "language": "en-US",
-  "ignorePaths": ["**/Upstream/*", "PublicAPI.*.txt", "**/bin/*", "**/obj/*"],
+  "ignorePaths": [
+    "**/bin/*",
+    "**/obj/*",
+    "**/Upstream/*",
+    "packages.lock.json",
+    "PublicAPI.*.txt"
+  ],
   "languageSettings": [
     {
       "languageId": "csharp",

@@ -23,9 +23,8 @@ public class ScenarioInvoker
     private readonly IReadOnlyList<BeforeAfterTestAttribute> beforeAfterScenarioAttributes;
     private readonly ExceptionAggregator aggregator;
     private readonly CancellationTokenSource cancellationTokenSource;
-    private readonly ExecutionTimer timer = new ExecutionTimer();
-    private readonly Stack<BeforeAfterTestAttribute> beforeAfterScenarioAttributesRun =
-        new Stack<BeforeAfterTestAttribute>();
+    private readonly ExecutionTimer timer = new();
+    private readonly Stack<BeforeAfterTestAttribute> beforeAfterScenarioAttributesRun = new();
 
     public ScenarioInvoker(
         IScenario scenario,
@@ -226,7 +225,7 @@ public class ScenarioInvoker
                 this.scenarioMethod,
                 this.scenarioMethodArguments,
                 stepDefinition.SkipReason,
-                new BeforeAfterTestAttribute[0],
+                Array.Empty<BeforeAfterTestAttribute>(),
                 new ExceptionAggregator(this.aggregator),
                 this.cancellationTokenSource);
 

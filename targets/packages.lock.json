@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net6.0": {
+      "Bullseye": {
+        "type": "Direct",
+        "requested": "[4.2.1, )",
+        "resolved": "4.2.1",
+        "contentHash": "LQ/YuE1TSxCPfn5qGwf7RpS4jGhXEES1ylsHUNbPKdyJqbh+3VRLcxhS2aUHM9wOKaLR7uISuaiHBYc5Idfatw=="
+      },
+      "SimpleExec": {
+        "type": "Direct",
+        "requested": "[11.0.0, )",
+        "resolved": "11.0.0",
+        "contentHash": "4r/YxcXlD9yk0XGdU07gUFey6ZiWu7LxG76l9d9xTDfObOcLvug1Xa9loQYuqs2nEviyTgicD1Svragh2qzlOA=="
+      }
+    }
+  }
+}

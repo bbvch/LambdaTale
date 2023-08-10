@@ -6,8 +6,8 @@ _[![LambdaTale NuGet version](https://img.shields.io/nuget/v/bbv.LambdaTale?labe
 > [!NOTE]
 > This is a fork of [xBehave.net](https://github.com/adamralph/xbehave.net). Adam, thank you very much!
 
-_[![Build status](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/ci.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions)_
-_[![CodeQL analysis](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/codeql-analysis.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Fcodeql-analysis.yml)_
+_[![CI](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/ci.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Fci.yml)_
+_[![CodeQL](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/codeql-analysis.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Fcodeql-analysis.yml)_
 _[![Lint](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/lint.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Flint.yml)_
 _[![Spell check](https://github.com/bbvch/LambdaTale/workflows/.github/workflows/spell-check.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions?query=workflow%3A.github%2Fworkflows%2Fspell-check.yml)_
 

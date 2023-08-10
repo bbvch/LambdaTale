@@ -1,21 +1,30 @@
 using static Bullseye.Targets;
 using static SimpleExec.Command;
 
-Target("build", () => RunAsync("dotnet", "build --configuration Release --nologo --verbosity quiet"));
+const string commonArgs = "--configuration Release --nologo";
+
+Target("restore", () => RunAsync("dotnet", "restore --locked-mode"));
+
+Target(
+    "build",
+    DependsOn("restore"),
+    () => RunAsync("dotnet", $"build --no-restore {commonArgs}"));
+
+Target("format", () => RunAsync("dotnet", "format --verify-no-changes"));
 
 Target(
     "pack",
     DependsOn("build"),
     () => RunAsync(
         "dotnet",
-        "pack src/LambdaTale --configuration Release --no-build --nologo",
+        $"pack src/LambdaTale --no-build {commonArgs}",
         configureEnvironment: env => env.Add("NUSPEC_FILE", "LambdaTale.nuspec")));
 
 Target(
     "test",
     DependsOn("build"),
-    () => RunAsync("dotnet", "test --configuration Release --no-build --nologo"));
+    () => RunAsync("dotnet", $"test --no-build {commonArgs}"));
 
-Target("default", DependsOn("pack", "test"));
+Target("default", DependsOn("format", "test", "pack"));
 
 await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);

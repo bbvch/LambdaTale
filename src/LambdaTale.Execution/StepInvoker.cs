@@ -12,7 +12,7 @@ public class StepInvoker
     private readonly Func<IStepContext, Task> body;
     private readonly ExceptionAggregator aggregator;
     private readonly CancellationTokenSource cancellationTokenSource;
-    private readonly ExecutionTimer timer = new ExecutionTimer();
+    private readonly ExecutionTimer timer = new();
 
     public StepInvoker(
         IStepContext stepContext,

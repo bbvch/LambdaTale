@@ -36,7 +36,7 @@ public class ScenarioInfo
         }
         else
         {
-            typeArguments = new ITypeInfo[0];
+            typeArguments = Array.Empty<ITypeInfo>();
             this.MethodToRun = testMethod.ToRuntimeMethod();
         }
 

@@ -11,12 +11,12 @@ namespace LambdaTale.Execution;
 
 public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
 {
-    private static readonly object[] noArguments = new object[0];
+    private static readonly object[] noArguments = Array.Empty<object>();
 
     private readonly IMessageSink diagnosticMessageSink;
-    private readonly ExceptionAggregator cleanupAggregator = new ExceptionAggregator();
-    private readonly List<ScenarioRunner> scenarioRunners = new List<ScenarioRunner>();
-    private readonly List<IDisposable> disposables = new List<IDisposable>();
+    private readonly ExceptionAggregator cleanupAggregator = new();
+    private readonly List<ScenarioRunner> scenarioRunners = new();
+    private readonly List<IDisposable> disposables = new();
     private Exception dataDiscoveryException;
 
     public ScenarioOutlineTestCaseRunner(
