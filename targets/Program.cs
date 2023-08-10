@@ -10,6 +10,8 @@ Target(
     DependsOn("restore"),
     () => RunAsync("dotnet", $"build --no-restore {commonArgs}"));
 
+Target("format", () => RunAsync("dotnet", "format --verify-no-changes"));
+
 Target(
     "pack",
     DependsOn("build"),
@@ -23,6 +25,6 @@ Target(
     DependsOn("build"),
     () => RunAsync("dotnet", $"test --no-build {commonArgs}"));
 
-Target("default", DependsOn("pack", "test"));
+Target("default", DependsOn("format", "test", "pack"));
 
 await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);
