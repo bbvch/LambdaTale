@@ -1037,7 +1037,7 @@
           "xunit.extensibility.core": "[2.5.0, )"
         }
       },
-      "LambdaTale.Execution.dotnet": {
+      "lambdatale.execution": {
         "type": "Project",
         "dependencies": {
           "LambdaTale": "[1.0.0, )",

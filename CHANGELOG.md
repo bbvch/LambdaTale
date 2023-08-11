@@ -1,7 +1,8 @@
 # Changelog
 
-## vNext
+## 2.5.3
 
+* platform independent execution dll
 * use locked-mode restore in CI
 
 ## 2.5.2
