@@ -145,4 +145,5 @@ indent_size                                                               = 1
 indent_style                                                              = tab
 
 [packages.lock.json]
+end_of_line                                                               = lf
 insert_final_newline = false
