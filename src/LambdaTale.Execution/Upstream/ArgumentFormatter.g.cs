@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.5.0/Sdk/ArgumentFormatter.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.5.1-pre.33/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -520,6 +520,7 @@ namespace Xunit.Sdk
 		static bool SafeToMultiEnumerate(IEnumerable collection) =>
 #endif
 			collection is Array ||
+			collection is BitArray ||
 			collection is IList ||
 			collection is IDictionary ||
 			GetSetElementType(collection) != null;

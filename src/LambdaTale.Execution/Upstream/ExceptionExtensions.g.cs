@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/xunit/2.5.0/src/common/ExceptionExtensions.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/xunit/2.5.1/src/common/ExceptionExtensions.cs
 using System;
 using System.Reflection;
 

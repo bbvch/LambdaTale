@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.100
+
+[xUnit 2.5.1](https://github.com/xunit/xunit/releases/tag/2.5.1)
+
 ## 2.5.3
 
 * platform independent execution dll

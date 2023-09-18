@@ -13,8 +13,8 @@
     <tags>testing xunit</tags>
     <version>$Version$</version>
     <dependencies>
-      <dependency id="xunit.core" version="[2.5.0, 2.6)" />
-      <dependency id="xunit.extensibility.execution" version="[2.5.0, 2.6)" />
+      <dependency id="xunit.core" version="[2.5.1, 2.6)" />
+      <dependency id="xunit.extensibility.execution" version="[2.5.1, 2.6)" />
     </dependencies>
   </metadata>
   <files>
