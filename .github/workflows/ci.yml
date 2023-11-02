@@ -11,10 +11,10 @@ jobs:
     name: build
     runs-on: ubuntu-22.04
     steps:
-      - name: setup-dotnet 7.0.401
+      - name: setup-dotnet 7.0.403
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: "7.0.401"
+          dotnet-version: "7.0.403"
       - run: dotnet --info
       - uses: actions/checkout@v4
         with:
