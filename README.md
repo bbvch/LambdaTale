@@ -13,6 +13,15 @@ _[![Spell check](https://github.com/bbvch/LambdaTale/workflows/.github/workflows
 
 Platform support: [.NET Standard 2.0 and upwards](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
+## Usage
+
+Install the [`bbv.LambdaTale` NuGet package](https://www.nuget.org/packages/bbv.LambdaTale) and start using LambdaTale in your tests.
+LambdaTale can be used in two different ways: Through a string extension method or a static `Spec()` method. Both usages are described below.
+
+### String Extension Method
+
+An example of using LambdaTale with the `x()` extension method is given below.
+
 ```csharp
 using System.Threading.Tasks;
 using LambdaTale;
@@ -37,6 +46,36 @@ public class SomeFeature
 
         "is always known"
             .x(() => Xunit.Assert.Equal(42, answer));
+    }
+}
+```
+
+### Static Spec Method
+
+An example of using LambdaTale with a [C# 6.0 `using static` directive](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#static-modifier) and the static `Spec()` method is given below.
+
+```csharp
+using System.Threading.Tasks;
+using LambdaTale;
+using static LambdaTale.Specifications;
+
+namespace Your.Tests;
+
+public class SomeFeature
+{
+    public class OracleService
+    {
+        public Task<int> Run() => Task.FromResult(42);
+    }
+
+    [Scenario]
+    public void SimpleDemo(int answer, OracleService sut)
+    {
+        Spec("Given a magic oracle", () => sut = new OracleService());
+
+        Spec("the answer", async () => answer = await sut.Run());
+
+        Spec("is always known", () => Xunit.Assert.Equal(42, answer));
     }
 }
 ```
