@@ -18,7 +18,7 @@ public class SpecFeature
 
         Spec("Sync spec works", () =>
         {
-            Task.Delay(1);
+            Task.Yield();
             Assert.True(true);
         });
     }
