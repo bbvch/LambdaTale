@@ -11,7 +11,8 @@ public class SpecFeature
     {
         Spec("Async spec works", async () =>
         {
-            await Task.Delay(1);
+            await Task.Yield();
+
             Assert.True(true);
         });
 
