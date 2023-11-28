@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.200
+
+* `Spec` method by @asbjornu
+* [xUnit 2.6.2](https://github.com/xunit/xunit/releases/tag/2.6.2)
+
 ## 2.5.100
 
 [xUnit 2.5.1](https://github.com/xunit/xunit/releases/tag/2.5.1)

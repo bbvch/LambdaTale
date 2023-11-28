@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.5.1-pre.33/Sdk/ArgumentFormatter.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.1/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -61,8 +61,10 @@ namespace Xunit.Sdk
 		/// </summary>
 		public const int MAX_STRING_LENGTH = 50;
 
+#pragma warning disable CA1825  // Can't use Array.Empty here because it's not available in .NET Standard 1.1
 		static readonly object[] EmptyObjects = new object[0];
 		static readonly Type[] EmptyTypes = new Type[0];
+#pragma warning restore CA1825
 
 #if XUNIT_NULLABLE
 		static PropertyInfo? tupleIndexer;
@@ -122,6 +124,9 @@ namespace Xunit.Sdk
 		/// <param name="s">The string value to be escaped</param>
 		public static string EscapeString(string s)
 		{
+			if (s == null)
+				throw new ArgumentNullException(nameof(s));
+
 			var builder = new StringBuilder(s.Length);
 			for (var i = 0; i < s.Length; i++)
 			{
@@ -134,7 +139,7 @@ namespace Xunit.Sdk
 				if (TryGetEscapeSequence(ch, out escapeSequence))
 					builder.Append(escapeSequence);
 				else if (ch < 32) // C0 control char
-					builder.AppendFormat(@"\x{0}", (+ch).ToString("x2"));
+					builder.AppendFormat(CultureInfo.CurrentCulture, @"\x{0}", (+ch).ToString("x2", CultureInfo.CurrentCulture));
 				else if (char.IsSurrogatePair(s, i)) // should handle the case of ch being the last one
 				{
 					// For valid surrogates, append like normal
@@ -144,7 +149,7 @@ namespace Xunit.Sdk
 				// Check for stray surrogates/other invalid chars
 				else if (char.IsSurrogate(ch) || ch == '\uFFFE' || ch == '\uFFFF')
 				{
-					builder.AppendFormat(@"\x{0}", (+ch).ToString("x4"));
+					builder.AppendFormat(CultureInfo.CurrentCulture, @"\x{0}", (+ch).ToString("x4", CultureInfo.CurrentCulture));
 				}
 				else
 					builder.Append(ch); // Append the char like normal
@@ -170,7 +175,7 @@ namespace Xunit.Sdk
 
 			var valueAsType = value as Type;
 			if (valueAsType != null)
-				return $"typeof({FormatTypeName(valueAsType, fullTypeName: true)})";
+				return string.Format(CultureInfo.CurrentCulture, "typeof({0})", FormatTypeName(valueAsType, fullTypeName: true));
 
 			try
 			{
@@ -216,8 +221,12 @@ namespace Xunit.Sdk
 				if (task != null)
 				{
 					var typeParameters = typeInfo.GenericTypeArguments;
-					var typeName = typeParameters.Length == 0 ? "Task" : $"Task<{string.Join(",", typeParameters.Select(t => FormatTypeName(t)))}>";
-					return $"{typeName} {{ Status = {task.Status} }}";
+					var typeName =
+						typeParameters.Length == 0
+							? "Task"
+							: string.Format(CultureInfo.CurrentCulture, "Task<{0}>", string.Join(",", typeParameters.Select(t => FormatTypeName(t))));
+
+					return string.Format(CultureInfo.CurrentCulture, "{0} {{ Status = {1} }}", typeName, task.Status);
 				}
 
 				// TODO: ValueTask?
@@ -241,7 +250,7 @@ namespace Xunit.Sdk
 			{
 				// Sometimes an exception is thrown when formatting an argument, such as in ToString.
 				// In these cases, we don't want xunit to crash, as tests may have passed despite this.
-				return $"{ex.GetType().Name} was thrown formatting an object of type \"{value.GetType()}\"";
+				return string.Format(CultureInfo.CurrentCulture, "{0} was thrown formatting an object of type \"{1}\"", ex.GetType().Name, value.GetType());
 			}
 		}
 
@@ -257,13 +266,13 @@ namespace Xunit.Sdk
 			string escapeSequence;
 #endif
 			if (TryGetEscapeSequence(value, out escapeSequence))
-				return $"'{escapeSequence}'";
+				return string.Format(CultureInfo.CurrentCulture, "'{0}'", escapeSequence);
 
 			if (char.IsLetterOrDigit(value) || char.IsPunctuation(value) || char.IsSymbol(value) || value == ' ')
-				return $"'{value}'";
+				return string.Format(CultureInfo.CurrentCulture, "'{0}'", value);
 
 			// Fallback to hex
-			return $"0x{(int)value:x4}";
+			return string.Format(CultureInfo.CurrentCulture, "0x{0:x4}", (int)value);
 		}
 
 		static string FormatComplexValue(
@@ -272,10 +281,10 @@ namespace Xunit.Sdk
 			Type type,
 			bool isAnonymousType)
 		{
-			var typeName = isAnonymousType ? "" : $"{type.Name} ";
+			var typeName = isAnonymousType ? "" : type.Name + " ";
 
 			if (depth == MAX_DEPTH)
-				return $"{typeName}{{ {Ellipsis} }}";
+				return string.Format(CultureInfo.CurrentCulture, "{0}{{ {1} }}", typeName, Ellipsis);
 
 			var fields =
 				type
@@ -297,21 +306,21 @@ namespace Xunit.Sdk
 					.ToList();
 
 			if (parameters.Count == 0)
-				return $"{typeName}{{ }}";
+				return string.Format(CultureInfo.CurrentCulture, "{0}{{ }}", typeName);
 
-			var formattedParameters = string.Join(", ", parameters.Take(MAX_OBJECT_ITEM_COUNT).Select(p => $"{p.name} = {p.value}"));
+			var formattedParameters = string.Join(", ", parameters.Take(MAX_OBJECT_ITEM_COUNT).Select(p => string.Format(CultureInfo.CurrentCulture, "{0} = {1}", p.name, p.value)));
 
 			if (parameters.Count > MAX_OBJECT_ITEM_COUNT)
 				formattedParameters += ", " + Ellipsis;
 
-			return $"{typeName}{{ {formattedParameters} }}";
+			return string.Format(CultureInfo.CurrentCulture, "{0}{{ {1} }}", typeName, formattedParameters);
 		}
 
 		static string FormatDateTimeValue(object value) =>
-			$"{value:o}";
+			string.Format(CultureInfo.CurrentCulture, "{0:o}", value);
 
 		static string FormatDoubleValue(object value) =>
-			$"{value:G17}";
+			string.Format(CultureInfo.CurrentCulture, "{0:G17}", value);
 
 		static string FormatEnumValue(object value) =>
 			value.ToString()?.Replace(", ", " | ") ?? "null";
@@ -353,7 +362,7 @@ namespace Xunit.Sdk
 		}
 
 		static string FormatFloatValue(object value) =>
-			$"{value:G9}";
+			string.Format(CultureInfo.CurrentCulture, "{0:G9}", value);
 
 		static string FormatStringValue(string value)
 		{
@@ -362,10 +371,10 @@ namespace Xunit.Sdk
 			if (value.Length > MAX_STRING_LENGTH)
 			{
 				var displayed = value.Substring(0, MAX_STRING_LENGTH);
-				return $"\"{displayed}\"" + Ellipsis;
+				return string.Format(CultureInfo.CurrentCulture, "\"{0}\"{1}", displayed, Ellipsis);
 			}
 
-			return $"\"{value}\"";
+			return string.Format(CultureInfo.CurrentCulture, "\"{0}\"", value);
 		}
 
 		static string FormatTupleValue(
@@ -421,7 +430,7 @@ namespace Xunit.Sdk
 					if (rank == 1)
 						arraySuffix += "[*]";
 					else
-						arraySuffix += $"[{new string(',', rank - 1)}]";
+						arraySuffix += string.Format(CultureInfo.CurrentCulture, "[{0}]", new string(',', rank - 1));
 				}
 
 #if XUNIT_NULLABLE
@@ -449,13 +458,13 @@ namespace Xunit.Sdk
 				result = result.Substring(0, tickIdx);
 
 			if (typeInfo.IsGenericTypeDefinition)
-				result = $"{result}<{new string(',', typeInfo.GenericTypeParameters.Length - 1)}>";
+				result = string.Format(CultureInfo.CurrentCulture, "{0}<{1}>", result, new string(',', typeInfo.GenericTypeParameters.Length - 1));
 			else if (typeInfo.IsGenericType)
 			{
 				if (typeInfo.GetGenericTypeDefinition() == typeof(Nullable<>))
 					result = FormatTypeName(typeInfo.GenericTypeArguments[0]) + "?";
 				else
-					result = $"{result}<{string.Join(", ", typeInfo.GenericTypeArguments.Select(t => FormatTypeName(t)))}>";
+					result = string.Format(CultureInfo.CurrentCulture, "{0}<{1}>", result, string.Join(", ", typeInfo.GenericTypeArguments.Select(t => FormatTypeName(t))));
 			}
 
 			return result + arraySuffix;
@@ -470,7 +479,7 @@ namespace Xunit.Sdk
 				var k = typeInfo.GetDeclaredProperty("Key")?.GetValue(value, null);
 				var v = typeInfo.GetDeclaredProperty("Value")?.GetValue(value, null);
 
-				return $"[{Format(k)}] = {Format(v)}";
+				return string.Format(CultureInfo.CurrentCulture, "[{0}] = {1}", Format(k), Format(v));
 			}
 
 			return Convert.ToString(value, CultureInfo.CurrentCulture) ?? "null";
@@ -583,7 +592,7 @@ namespace Xunit.Sdk
 			}
 			catch (Exception ex)
 			{
-				return $"(throws {UnwrapException(ex)?.GetType().Name})";
+				return string.Format(CultureInfo.CurrentCulture, "(throws {0})", UnwrapException(ex)?.GetType().Name);
 			}
 		}
 	}

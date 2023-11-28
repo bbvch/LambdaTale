@@ -23,7 +23,7 @@
     },
     {
       "languageId": "csproj",
-      "words": ["ruleset", "visualstudio"]
+      "words": ["buildtransitive", "contentfiles", "ruleset", "visualstudio"]
     },
     {
       "languageId": "nuspec",
@@ -48,5 +48,5 @@
       "languageId": "props"
     }
   ],
-  "words": ["teardowns", "xunit"]
+  "words": ["asbjornu", "teardowns", "xunit"]
 }
