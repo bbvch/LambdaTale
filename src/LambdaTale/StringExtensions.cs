@@ -24,7 +24,7 @@ public static class StringExtensions
         {
             Text = text,
             Body = body == null
-                ? (Func<IStepContext, Task>)null
+                ? null
                 : c =>
                 {
                     body();
@@ -50,7 +50,7 @@ public static class StringExtensions
         {
             Text = text,
             Body = body == null
-                ? (Func<IStepContext, Task>)null
+                ? null
                 : c =>
                 {
                     body(c);
@@ -75,7 +75,7 @@ public static class StringExtensions
         var stepDefinition = new StepDefinition
         {
             Text = text,
-            Body = body == null ? (Func<IStepContext, Task>)null : c => body(),
+            Body = body == null ? null : c => body(),
         };
 
         CurrentThread.Add(stepDefinition);

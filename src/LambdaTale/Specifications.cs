@@ -17,17 +17,7 @@ public static class Specifications
     /// <returns>
     /// An instance of <see cref="IStepBuilder"/>.
     /// </returns>
-    public static IStepDefinition Spec(string text, Func<Task> body)
-    {
-        var stepDefinition = new StepDefinition
-        {
-            Text = text,
-            Body = body == null ? null : _ => body()
-        };
-
-        CurrentThread.Add(stepDefinition);
-        return stepDefinition;
-    }
+    public static IStepBuilder Spec(string text, Func<Task> body) => text.x(body);
 
     /// <summary>
     /// Defines a step in the current scenario.
@@ -37,19 +27,5 @@ public static class Specifications
     /// <returns>
     /// An instance of <see cref="IStepBuilder"/>.
     /// </returns>
-    public static IStepDefinition Spec(string text, Action body)
-    {
-        var stepDefinition = new StepDefinition
-        {
-            Text = text,
-            Body = body == null ? null : _ =>
-            {
-                body();
-                return Task.CompletedTask;
-            }
-        };
-
-        CurrentThread.Add(stepDefinition);
-        return stepDefinition;
-    }
+    public static IStepBuilder Spec(string text, Action body) => text.x(body);
 }

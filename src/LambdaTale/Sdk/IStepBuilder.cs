@@ -6,7 +6,10 @@ namespace LambdaTale.Sdk;
 /// <summary>
 /// Provides methods for building steps.
 /// </summary>
-/// <remarks>This is the type returned from <c>String.x()</c>.</remarks>
+/// <remarks>
+/// This is the type returned from
+/// <see cref="StringExtensions"/>.x(...) and <see cref="Specifications"/>.Spec(...) methods.
+/// </remarks>
 public interface IStepBuilder
 {
     /// <summary>
