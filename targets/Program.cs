@@ -8,7 +8,7 @@ Target("restore", () => RunAsync("dotnet", "restore --locked-mode"));
 Target(
     "build",
     DependsOn("restore"),
-    () => RunAsync("dotnet", $"build --no-restore {commonArgs}"));
+    () => RunAsync("dotnet", $"build --no-restore {commonArgs} /p:ContinuousIntegrationBuild=true"));
 
 Target(
     "format",

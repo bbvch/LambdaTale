@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <CodeAnalysisRuleSet>LambdaTale.Execution.ruleset</CodeAnalysisRuleSet>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
