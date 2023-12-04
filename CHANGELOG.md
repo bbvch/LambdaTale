@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.201
+
+* Deterministic build
+* use `global.json` .NET version for CI
+
 ## 2.6.200
 
 * `Spec` method by @asbjornu

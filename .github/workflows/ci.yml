@@ -11,10 +11,8 @@ jobs:
     name: build
     runs-on: ubuntu-22.04
     steps:
-      - name: setup-dotnet 8.0.100
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: "8.0.100"
+      - name: setup-dotnet
+        uses: actions/setup-dotnet@v4
       - run: dotnet --info
       - uses: actions/checkout@v4
         with:

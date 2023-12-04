@@ -5,6 +5,7 @@
   <PropertyGroup>
     <AnalysisMode>All</AnalysisMode>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <ItemGroup>
