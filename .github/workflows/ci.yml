@@ -11,12 +11,10 @@ jobs:
     name: build
     runs-on: ubuntu-22.04
     steps:
-      - name: setup-dotnet
-        uses: actions/setup-dotnet@v4
-      - run: dotnet --info
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - uses: actions/setup-dotnet@v4
       - run: dotnet run --project targets --no-launch-profile
       - name: publish
         if: github.event.release != null
