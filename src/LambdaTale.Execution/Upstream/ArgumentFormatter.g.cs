@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.1/Sdk/ArgumentFormatter.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.3/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -566,8 +566,15 @@ namespace Xunit.Sdk
 			return value != null;
 		}
 
-		static Exception UnwrapException(Exception ex)
+#if XUNIT_NULLABLE
+		internal static Exception? UnwrapException(Exception? ex)
+#else
+		internal static Exception UnwrapException(Exception ex)
+#endif
 		{
+			if (ex == null)
+				return null;
+
 			while (true)
 			{
 				var tiex = ex as TargetInvocationException;
