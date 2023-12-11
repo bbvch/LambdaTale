@@ -35,9 +35,9 @@ namespace Xunit.Sdk
         /// <inheritdoc/>
         public new bool Equals(
 #if XUNIT_NULLABLE
-            object? x,
-            object? y) =>
-                innerComparer.Equals((T?)x, (T?)y);
+			object? x,
+			object? y) =>
+				innerComparer.Equals((T?)x, (T?)y);
 #else
             object x,
             object y) =>
@@ -47,8 +47,8 @@ namespace Xunit.Sdk
         /// <inheritdoc/>
         public bool Equals(
 #if XUNIT_NULLABLE
-            T? x,
-            T? y) =>
+			T? x,
+			T? y) =>
 #else
             T x,
             T y) =>

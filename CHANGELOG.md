@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.300
+
+[xUnit 2.6.3](https://github.com/xunit/xunit/releases/tag/2.6.3)
+
 ## 2.6.201
 
 * Deterministic build
