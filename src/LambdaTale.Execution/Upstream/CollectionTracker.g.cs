@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.1/Sdk/CollectionTracker.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.5/Sdk/CollectionTracker.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -191,7 +191,10 @@ namespace Xunit.Sdk
 					return false;
 				else
 				{
-					var comparer = AssertEqualityComparer.GetDefaultComparer(valueX.GetType());
+					var valueXType = valueX.GetType();
+					var valueYType = valueY.GetType();
+
+					var comparer = AssertEqualityComparer.GetDefaultComparer(valueXType == valueYType ? valueXType : typeof(object));
 					if (!comparer.Equals(valueX, valueY))
 						return false;
 				}

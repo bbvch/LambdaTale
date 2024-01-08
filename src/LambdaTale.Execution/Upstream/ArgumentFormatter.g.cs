@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.3/Sdk/ArgumentFormatter.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.5/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
