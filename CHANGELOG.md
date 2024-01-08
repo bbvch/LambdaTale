@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.500
+
+[xUnit 2.6.5](https://github.com/xunit/xunit/compare/2.6.3...2.6.5)
+
 ## 2.6.300
 
 [xUnit 2.6.3](https://github.com/xunit/xunit/releases/tag/2.6.3)
