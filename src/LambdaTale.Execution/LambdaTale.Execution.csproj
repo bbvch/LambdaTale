@@ -3,6 +3,7 @@
   <PropertyGroup>
     <CodeAnalysisRuleSet>LambdaTale.Execution.ruleset</CodeAnalysisRuleSet>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <DefineConstants>XUNIT_VISIBILITY_INTERNAL</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit.extensibility.execution" Version="2.6.5" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.6.6" />
   </ItemGroup>
 
 </Project>

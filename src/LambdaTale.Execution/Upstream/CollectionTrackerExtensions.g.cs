@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.5/Sdk/CollectionTrackerExtensions.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Sdk/CollectionTrackerExtensions.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -106,7 +106,7 @@ namespace Xunit.Sdk
 		/// </summary>
 		public static IEnumerator GetEnumerator(this CollectionTracker tracker)
 		{
-			XunitAssert.GuardArgumentNotNull(nameof(tracker), tracker);
+			Assert.GuardArgumentNotNull(nameof(tracker), tracker);
 
 			return tracker.GetSafeEnumerator();
 		}

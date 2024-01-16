@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.5/Sdk/CollectionTracker.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Sdk/CollectionTracker.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -82,7 +82,7 @@ namespace Xunit.Sdk
 			bool isDefaultItemComparer,
 			out int? mismatchedIndex)
 		{
-			XunitAssert.GuardArgumentNotNull(nameof(itemComparer), itemComparer);
+			Assert.GuardArgumentNotNull(nameof(itemComparer), itemComparer);
 
 			mismatchedIndex = null;
 
@@ -612,7 +612,7 @@ namespace Xunit.Sdk
 			IEnumerable<T> collection,
 			int depth = 1)
 		{
-			XunitAssert.GuardArgumentNotNull(nameof(collection), collection);
+			Assert.GuardArgumentNotNull(nameof(collection), collection);
 
 			if (depth == ArgumentFormatter.MAX_DEPTH)
 				return ArgumentFormatter.EllipsisInBrackets;
