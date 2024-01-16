@@ -19,12 +19,11 @@
       },
       "xunit.extensibility.execution": {
         "type": "Direct",
-        "requested": "[2.6.5, )",
-        "resolved": "2.6.5",
-        "contentHash": "jUMr88e0lSqDq8Vut0XVqx7plFg91QsKW/rX6gaVnJL6Z19LmNSDmyqd7cg6HQGfboAmyoFZyydA4Kcgouu1BA==",
+        "requested": "[2.6.6, )",
+        "resolved": "2.6.6",
+        "contentHash": "UDjIVGj2TepVKN3n32/qXIdb3U6STwTb9L6YEwoQO2A8OxiJS5QAVv2l1aT6tDwwv/9WBmm8Khh/LyHALipcng==",
         "dependencies": {
-          "NETStandard.Library": "1.6.1",
-          "xunit.extensibility.core": "[2.6.5]"
+          "xunit.extensibility.core": "[2.6.6]"
         }
       },
       "Microsoft.NETCore.Platforms": {
@@ -39,17 +38,16 @@
       },
       "xunit.extensibility.core": {
         "type": "Transitive",
-        "resolved": "2.6.5",
-        "contentHash": "dSGRkVxzH27XaL83+Z9kNPllqgsmsiPayXw+0weCGsrZQxfSCBNNkSb9nYUpkVoEBCUviXOmo1tfApqhgqTjog==",
+        "resolved": "2.6.6",
+        "contentHash": "ty6VKByzbx4Toj4/VGJLEnlmOawqZiMv0in/tLju+ftA+lbWuAWDERM+E52Jfhj4ZYHrAYVa14KHK5T+dq0XxA==",
         "dependencies": {
-          "NETStandard.Library": "1.6.1",
           "xunit.abstractions": "2.0.3"
         }
       },
       "lambdatale": {
         "type": "Project",
         "dependencies": {
-          "xunit.extensibility.core": "[2.6.5, )"
+          "xunit.extensibility.core": "[2.6.6, )"
         }
       }
     }

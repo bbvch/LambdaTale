@@ -1,4 +1,4 @@
-// adapted from: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.5/Guards.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Guards.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #endif
@@ -16,7 +16,7 @@ namespace Xunit
 #else
     public
 #endif
-        partial class XunitAssert
+        partial class Assert
     {
         /// <summary/>
 #if XUNIT_NULLABLE

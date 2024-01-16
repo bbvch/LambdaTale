@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.6.600
+
+* [xUnit 2.6.6](https://github.com/xunit/xunit/compare/2.6.5...2.6.6)
+* update infrastructure (xUnit now internal, removed Xunit.XunitAssert)
+
 ## 2.6.500
 
 [xUnit 2.6.5](https://github.com/xunit/xunit/compare/2.6.3...2.6.5)

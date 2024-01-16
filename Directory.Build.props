@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Deterministic>true</Deterministic>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <NoWarn>$(NoWarn);CA1014</NoWarn>    <!-- Mark assemblies with CLSCompliant -->
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
   </PropertyGroup>
