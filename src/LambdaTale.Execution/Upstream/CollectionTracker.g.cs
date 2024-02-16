@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Sdk/CollectionTracker.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/CollectionTracker.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else

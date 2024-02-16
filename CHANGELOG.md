@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.0
+
+* [xUnit 2.7.0](https://github.com/xunit/xunit/compare/2.6.6...2.7.0)
+* update infrastructure (GH actions, test dependencies)
+
 ## 2.6.600
 
 * [xUnit 2.6.6](https://github.com/xunit/xunit/compare/2.6.5...2.6.6)

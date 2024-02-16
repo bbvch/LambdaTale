@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Guards.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Guards.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #endif
@@ -14,26 +14,26 @@ namespace Xunit
 #if XUNIT_VISIBILITY_INTERNAL
 	internal
 #else
-    public
+	public
 #endif
-        partial class Assert
-    {
-        /// <summary/>
+	partial class Assert
+	{
+		/// <summary/>
 #if XUNIT_NULLABLE
 		[return: NotNull]
 #endif
-        internal static T GuardArgumentNotNull<T>(
-            string argName,
+		internal static T GuardArgumentNotNull<T>(
+			string argName,
 #if XUNIT_NULLABLE
 			[NotNull] T? argValue)
 #else
-            T argValue)
+			T argValue)
 #endif
-        {
-            if (argValue == null)
-                throw new ArgumentNullException(argName.TrimStart('@'));
+		{
+			if (argValue == null)
+				throw new ArgumentNullException(argName.TrimStart('@'));
 
-            return argValue;
-        }
-    }
+			return argValue;
+		}
+	}
 }
