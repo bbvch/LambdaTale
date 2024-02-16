@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Sdk/ArgumentFormatter.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -124,8 +124,12 @@ namespace Xunit.Sdk
 		/// <param name="s">The string value to be escaped</param>
 		public static string EscapeString(string s)
 		{
+#if NET6_0_OR_GREATER
+			ArgumentNullException.ThrowIfNull(s);
+#else
 			if (s == null)
 				throw new ArgumentNullException(nameof(s));
+#endif
 
 			var builder = new StringBuilder(s.Length);
 			for (var i = 0; i < s.Length; i++)
@@ -323,7 +327,11 @@ namespace Xunit.Sdk
 			string.Format(CultureInfo.CurrentCulture, "{0:G17}", value);
 
 		static string FormatEnumValue(object value) =>
+#if NETCOREAPP2_0_OR_GREATER
+			value.ToString()?.Replace(", ", " | ", StringComparison.Ordinal) ?? "null";
+#else
 			value.ToString()?.Replace(", ", " | ") ?? "null";
+#endif
 
 		static string FormatEnumerableValue(
 			IEnumerable enumerable,
@@ -366,7 +374,11 @@ namespace Xunit.Sdk
 
 		static string FormatStringValue(string value)
 		{
+#if NETCOREAPP2_0_OR_GREATER
+			value = EscapeString(value).Replace(@"""", @"\""", StringComparison.Ordinal); // escape double quotes
+#else
 			value = EscapeString(value).Replace(@"""", @"\"""); // escape double quotes
+#endif
 
 			if (value.Length > MAX_STRING_LENGTH)
 			{
@@ -453,7 +465,11 @@ namespace Xunit.Sdk
 			if (result == null)
 				return typeInfo.Name;
 
+#if NETCOREAPP2_1_OR_GREATER
+			var tickIdx = result.IndexOf('`', StringComparison.Ordinal);
+#else
 			var tickIdx = result.IndexOf('`');
+#endif
 			if (tickIdx > 0)
 				result = result.Substring(0, tickIdx);
 
@@ -509,7 +525,11 @@ namespace Xunit.Sdk
 			if (typeInfo.GetCustomAttribute(typeof(CompilerGeneratedAttribute)) == null)
 				return false;
 
+#if NETCOREAPP2_1_OR_GREATER
+			return typeInfo.Name.Contains("AnonymousType", StringComparison.Ordinal);
+#else
 			return typeInfo.Name.Contains("AnonymousType");
+#endif
 		}
 
 		static bool IsSZArrayType(this TypeInfo typeInfo)

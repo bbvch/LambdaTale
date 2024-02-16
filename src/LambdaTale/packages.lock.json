@@ -25,9 +25,9 @@
       },
       "xunit.extensibility.core": {
         "type": "Direct",
-        "requested": "[2.6.6, )",
-        "resolved": "2.6.6",
-        "contentHash": "ty6VKByzbx4Toj4/VGJLEnlmOawqZiMv0in/tLju+ftA+lbWuAWDERM+E52Jfhj4ZYHrAYVa14KHK5T+dq0XxA==",
+        "requested": "[2.7.0, )",
+        "resolved": "2.7.0",
+        "contentHash": "JLnx4PI0vn1Xr1Ust6ydrp2t/ktm2dyGPAVoDJV5gQuvBMSbd2K7WGzODa2ttiz030CeQ8nbsXl05+cvf7QNyA==",
         "dependencies": {
           "xunit.abstractions": "2.0.3"
         }

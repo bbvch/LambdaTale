@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.6.6/Sdk/AssertEqualityComparer.cs
+// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/AssertEqualityComparer.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -345,8 +345,12 @@ namespace Xunit.Sdk
 
 			public FuncEqualityComparer(Func<T, T, bool> comparer)
 			{
+#if NET6_0_OR_GREATER
+				ArgumentNullException.ThrowIfNull(comparer);
+#else
 				if (comparer == null)
 					throw new ArgumentNullException(nameof(comparer));
+#endif
 
 				this.comparer = comparer;
 			}
