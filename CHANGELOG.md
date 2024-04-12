@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.7.100
+
+* [xUnit 2.7.1](https://github.com/xunit/xunit/compare/2.7.0...2.7.1)
+* update infrastructure
+
 ## 2.7.0
 
 * [xUnit 2.7.0](https://github.com/xunit/xunit/compare/2.6.6...2.7.0)
