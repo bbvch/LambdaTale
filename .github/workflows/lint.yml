@@ -6,8 +6,8 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
-      - uses: github/super-linter/slim@45fc0d88288beee4701c62761281edfee85655d7 # v5
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
+      - uses: github/super-linter/slim@4e51915f4a812abf59fed160bb14595c0a38a9e7 # v6
         env:
           FILTER_REGEX_EXCLUDE: \bLICENSE$|\.g\.cs$
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
