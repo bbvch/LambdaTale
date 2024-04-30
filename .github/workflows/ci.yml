@@ -6,6 +6,7 @@ on:
     types: [published]
 env:
   DOTNET_NOLOGO: true
+permissions: {}
 jobs:
   build:
     name: build
