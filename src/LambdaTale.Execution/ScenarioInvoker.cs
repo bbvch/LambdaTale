@@ -225,7 +225,7 @@ public class ScenarioInvoker
                 this.scenarioMethod,
                 this.scenarioMethodArguments,
                 stepDefinition.SkipReason,
-                Array.Empty<BeforeAfterTestAttribute>(),
+                [],
                 new ExceptionAggregator(this.aggregator),
                 this.cancellationTokenSource);
 

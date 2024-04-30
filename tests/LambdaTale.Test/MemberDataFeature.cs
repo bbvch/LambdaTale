@@ -60,9 +60,9 @@ public class MemberDataFeature : Feature
 
         public static IEnumerable<object[]> MemberData()
         {
-            yield return new object[] { 1, 2, 3 };
-            yield return new object[] { 10, 20, 30 };
-            yield return new object[] { 100, 200, 300 };
+            yield return [1, 2, 3];
+            yield return [10, 20, 30];
+            yield return [100, 200, 300];
         }
 
         [Scenario]
