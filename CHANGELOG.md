@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.8.1
+
+* support default parameters
+* bump source dependencies
+
 ## 2.8.0
 
 * [xUnit 2.8.0](https://github.com/xunit/xunit/compare/2.7.1...2.8.0)

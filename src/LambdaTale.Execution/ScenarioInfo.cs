@@ -36,15 +36,15 @@ public class ScenarioInfo
         }
         else
         {
-            typeArguments = Array.Empty<ITypeInfo>();
+            typeArguments = [];
             this.MethodToRun = testMethod.ToRuntimeMethod();
         }
 
-        var passedArguments = Reflector.ConvertArguments(
-            dataRow, this.MethodToRun.GetParameters().Select(p => p.ParameterType).ToArray());
+        var parameterInfos = this.MethodToRun.GetParameters();
+        var passedArguments = Reflector.ConvertArguments(dataRow, parameterInfos.Select(p => p.ParameterType).ToArray());
 
         var generatedArguments = GetGeneratedArguments(
-            typeParameters, typeArguments, parameters, passedArguments.Length);
+            typeParameters, typeArguments, parameters, parameterInfos, passedArguments.Length);
 
         var arguments = passedArguments
             .Select(value => new Argument(value))
@@ -88,12 +88,20 @@ public class ScenarioInfo
         IReadOnlyList<ITypeInfo> typeParameters,
         IReadOnlyList<ITypeInfo> typeArguments,
         IReadOnlyList<IParameterInfo> parameters,
+        IReadOnlyList<ParameterInfo> parameterInfos,
         int passedArgumentsCount)
     {
         for (var missingArgumentIndex = passedArgumentsCount;
             missingArgumentIndex < parameters.Count;
             ++missingArgumentIndex)
         {
+            var parameterInfo = parameterInfos[missingArgumentIndex];
+            if (parameterInfo.HasDefaultValue)
+            {
+                yield return new Argument(parameterInfo.DefaultValue);
+                continue;
+            }
+
             var parameterType = parameters[missingArgumentIndex].ParameterType;
             if (parameterType.IsGenericParameter)
             {
@@ -124,7 +132,7 @@ public class ScenarioInfo
         IReadOnlyList<Argument> arguments)
     {
         var typeArgumentsString = typeArguments.Any()
-            ? $"<{string.Join(", ", typeArguments.Select(typeArgument => TypeUtility.ConvertToSimpleTypeName(typeArgument)))}>"
+            ? $"<{string.Join(", ", typeArguments.Select(TypeUtility.ConvertToSimpleTypeName))}>"
             : string.Empty;
 
         var parameterAndArgumentTokens = new List<string>();

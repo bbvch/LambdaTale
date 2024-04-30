@@ -56,7 +56,7 @@ public static class CurrentThread
     /// the <see cref="IEnumerable{T}"/> will be empty.
     /// </remarks>
     public static IEnumerable<IStepDefinition> StepDefinitions =>
-        stepDefinitions ?? Enumerable.Empty<IStepDefinition>();
+        stepDefinitions ?? [];
 
     private sealed class StepDefinitionContext : IDisposable
     {

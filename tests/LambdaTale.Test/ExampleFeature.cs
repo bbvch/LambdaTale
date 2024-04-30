@@ -254,13 +254,21 @@ an null value for an argument defined using the fifth type parameter"
             .x(() => Assert.All(results, result => Assert.IsAssignableFrom<ITestPassed>(result)));
     }
 
-    public sealed class BadExampleAttribute : MemberDataAttributeBase
+    [Scenario]
+    public void DefaultValuesExample(Type feature, ITestResultMessage[] results)
     {
-        public BadExampleAttribute()
-            : base("Dummy", Array.Empty<object>())
-        {
-        }
+        "Given scenarios with default parameters"
+            .x(() => feature = typeof(ScenariosWithDefaultParameters));
 
+        "When I run the scenarios"
+            .x(() => results = this.Run<ITestResultMessage>(feature));
+
+        "Then each result should be a pass".x(() =>
+            Assert.All(results, result => Assert.IsAssignableFrom<ITestPassed>(result)));
+    }
+
+    public sealed class BadExampleAttribute() : MemberDataAttributeBase("Dummy", [])
+    {
         protected override object[] ConvertDataItem(MethodInfo testMethod, object item) =>
             throw new NotImplementedException();
     }
@@ -269,7 +277,7 @@ an null value for an argument defined using the fifth type parameter"
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {
-            yield return new object[] { new BadDisposable() };
+            yield return [new BadDisposable()];
         }
     }
 
@@ -510,5 +518,15 @@ an null value for an argument defined using the fifth type parameter"
         public static void Scenario(Guid actual) =>
             "Then the actual is expected"
                 .x(() => Assert.Equal(expected, actual));
+    }
+
+    private static class ScenariosWithDefaultParameters
+    {
+        [Scenario]
+        [InlineData(1)]
+        [InlineData(2, 2)]
+        public static void DefaultParameter(int fromData, int fromDefault = 1) =>
+            "Then the default values are respected"
+                .x(() => Assert.Equal(fromData, fromDefault));
     }
 }

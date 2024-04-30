@@ -11,7 +11,7 @@ namespace LambdaTale.Execution;
 
 public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
 {
-    private static readonly object[] noArguments = Array.Empty<object>();
+    private static readonly object[] noArguments = [];
 
     private readonly IMessageSink diagnosticMessageSink;
     private readonly ExceptionAggregator cleanupAggregator = new();
@@ -56,32 +56,44 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
                     this.disposables.AddRange(dataRow.OfType<IDisposable>());
 
                     var info = new ScenarioInfo(this.TestCase.TestMethod.Method, dataRow, this.DisplayName);
-                    var methodToRun = info.MethodToRun;
-                    var convertedDataRow = info.ConvertedDataRow.ToArray();
-
-                    var theoryDisplayName = info.ScenarioDisplayName;
-                    var test = new Scenario(this.TestCase, theoryDisplayName);
+                    var test = new Scenario(this.TestCase, info.ScenarioDisplayName);
                     var skipReason = this.SkipReason ?? dataAttribute.GetNamedArgument<string>(nameof(DataAttribute.Skip));
-                    this.scenarioRunners.Add(new ScenarioRunner(test, this.MessageBus, this.TestClass, this.ConstructorArguments, methodToRun, convertedDataRow, skipReason, this.BeforeAfterAttributes, this.Aggregator, this.CancellationTokenSource));
+                    var runner = new ScenarioRunner(
+                        test,
+                        this.MessageBus,
+                        this.TestClass,
+                        this.ConstructorArguments,
+                        info.MethodToRun,
+                        info.ConvertedDataRow.ToArray(),
+                        skipReason,
+                        this.BeforeAfterAttributes,
+                        this.Aggregator,
+                        this.CancellationTokenSource);
+                    this.scenarioRunners.Add(runner);
                 }
             }
 
             if (!this.scenarioRunners.Any())
             {
                 var info = new ScenarioInfo(this.TestCase.TestMethod.Method, noArguments, this.DisplayName);
-                var methodToRun = info.MethodToRun;
-                var convertedDataRow = info.ConvertedDataRow.ToArray();
-
-                var theoryDisplayName = info.ScenarioDisplayName;
-                var test = new Scenario(this.TestCase, theoryDisplayName);
-                this.scenarioRunners.Add(new ScenarioRunner(test, this.MessageBus, this.TestClass, this.ConstructorArguments, methodToRun, convertedDataRow, this.SkipReason, this.BeforeAfterAttributes, this.Aggregator, this.CancellationTokenSource));
+                var test = new Scenario(this.TestCase, info.ScenarioDisplayName);
+                var runner = new ScenarioRunner(
+                    test,
+                    this.MessageBus,
+                    this.TestClass,
+                    this.ConstructorArguments,
+                    info.MethodToRun,
+                    info.ConvertedDataRow.ToArray(),
+                    this.SkipReason,
+                    this.BeforeAfterAttributes,
+                    this.Aggregator,
+                    this.CancellationTokenSource);
+                this.scenarioRunners.Add(runner);
             }
         }
-#pragma warning disable IDE0079 // Remove unnecessary suppression
 #pragma warning disable CA1031 // Do not catch general exception types
         catch (Exception ex)
 #pragma warning restore CA1031 // Do not catch general exception types
-#pragma warning restore IDE0079 // Remove unnecessary suppression
         {
             this.dataDiscoveryException = ex;
         }

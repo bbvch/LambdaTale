@@ -35,9 +35,7 @@ public class AsyncCollectionFixtureFeature : Feature
     }
 
     [CollectionDefinition("AsyncCollectionFixtureTestFeatures")]
-    public class AsyncCollectionFixtureTestFeatures : ICollectionFixture<AsyncFixture>
-    {
-    }
+    public class AsyncCollectionFixtureTestFeatures : ICollectionFixture<AsyncFixture>;
 
     [Collection("AsyncCollectionFixtureTestFeatures")]
     public class ScenarioWithACollectionFixture1
