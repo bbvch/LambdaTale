@@ -523,8 +523,8 @@ an null value for an argument defined using the fifth type parameter"
     private static class ScenariosWithDefaultParameters
     {
         [Scenario]
-        [InlineData(1)]
-        [InlineData(2, 2)]
+        [Example(1)]
+        [Example(2, 2)]
         public static void DefaultParameter(int fromData, int fromDefault = 1) =>
             "Then the default values are respected"
                 .x(() => Assert.Equal(fromData, fromDefault));

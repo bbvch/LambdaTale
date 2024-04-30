@@ -10,7 +10,7 @@ internal class StepDefinition : IStepDefinition
 
     public Func<IStepContext, Task> Body { get; set; }
 
-    public ICollection<Func<IStepContext, Task>> Teardowns { get; } = new List<Func<IStepContext, Task>>();
+    public ICollection<Func<IStepContext, Task>> Teardowns { get; } = [];
 
     public string SkipReason { get; set; }
 

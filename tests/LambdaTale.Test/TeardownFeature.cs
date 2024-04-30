@@ -34,7 +34,7 @@ public class TeardownFeature : Feature
 
         "Ann the teardowns should be executed in reverse order after the step"
             .x(() => Assert.Equal(
-                new[] { "step1", "teardown3", "teardown2", "teardown1" },
+                ["step1", "teardown3", "teardown2", "teardown1"],
                 typeof(TeardownFeature).GetTestEvents()));
     }
 
@@ -61,7 +61,7 @@ public class TeardownFeature : Feature
 
         "And the teardowns should be executed in reverse order after the step"
             .x(() => Assert.Equal(
-                new[] { "step1", "teardown3", "teardown2", "teardown1" },
+                ["step1", "teardown3", "teardown2", "teardown1"],
                 typeof(TeardownFeature).GetTestEvents()));
     }
 
@@ -82,7 +82,7 @@ public class TeardownFeature : Feature
 
         "And the teardowns should be executed in reverse order after the steps"
             .x(() => Assert.Equal(
-                new[] { "step1", "step2", "teardown6", "teardown5", "teardown4", "teardown3", "teardown2", "teardown1" },
+                ["step1", "step2", "teardown6", "teardown5", "teardown4", "teardown3", "teardown2", "teardown1"],
                 typeof(TeardownFeature).GetTestEvents()));
     }
 
@@ -100,7 +100,7 @@ public class TeardownFeature : Feature
 
         "And the teardowns should be executed after each step"
             .x(() => Assert.Equal(
-                new[] { "step1", "step2", "step3", "teardown2", "teardown1" },
+                ["step1", "step2", "step3", "teardown2", "teardown1"],
                 typeof(TeardownFeature).GetTestEvents()));
     }
 
@@ -118,7 +118,7 @@ public class TeardownFeature : Feature
 
         "And the teardowns should be executed in reverse order after the step"
             .x(() => Assert.Equal(
-                new[] { "step1", "teardown3", "teardown2", "teardown1" },
+                ["step1", "teardown3", "teardown2", "teardown1"],
                 typeof(TeardownFeature).GetTestEvents()));
     }
 
