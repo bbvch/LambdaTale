@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace LambdaTale.Sdk;
 
@@ -22,8 +21,7 @@ public static class CurrentThread
     /// </returns>
     public static IDisposable EnterStepDefinitionContext()
     {
-        stepDefinitions = new List<IStepDefinition>();
-
+        stepDefinitions = [];
         return new StepDefinitionContext();
     }
 

@@ -25,7 +25,7 @@ public class BeforeAfterScenarioFeature : Feature
 
         "Then the attributes before and after methods are called before and after the scenario"
             .x(() => Assert.Equal(
-                new[] { "before1", "step1", "step2", "step3", "after1" },
+                ["before1", "step1", "step2", "step3", "after1"],
                 typeof(BeforeAfterScenarioFeature).GetTestEvents()));
     }
 

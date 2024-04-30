@@ -15,7 +15,7 @@ public static class Invoker
         try
         {
             var asyncSyncContext = new AsyncTestSyncContext(oldSyncContext);
-            SynchronizationContext.SetSynchronizationContext(asyncSyncContext);
+            SetSynchronizationContext(asyncSyncContext);
 
             await aggregator?.RunAsync(
                 () => timer.AggregateAsync(
@@ -31,7 +31,11 @@ public static class Invoker
         }
         finally
         {
-            SynchronizationContext.SetSynchronizationContext(oldSyncContext);
+            SetSynchronizationContext(oldSyncContext);
         }
     }
+
+    [SecuritySafeCritical]
+    private static void SetSynchronizationContext(SynchronizationContext context) =>
+        SynchronizationContext.SetSynchronizationContext(context);
 }

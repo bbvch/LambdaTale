@@ -6,7 +6,7 @@ namespace LambdaTale.Execution;
 
 public class StepContext : IStepContext
 {
-    private readonly List<IDisposable> disposables = new();
+    private readonly List<IDisposable> disposables = [];
 
     public StepContext(IStep step) => this.Step = step;
 

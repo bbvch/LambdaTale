@@ -15,8 +15,8 @@ public class ScenarioOutlineTestCaseRunner : XunitTestCaseRunner
 
     private readonly IMessageSink diagnosticMessageSink;
     private readonly ExceptionAggregator cleanupAggregator = new();
-    private readonly List<ScenarioRunner> scenarioRunners = new();
-    private readonly List<IDisposable> disposables = new();
+    private readonly List<ScenarioRunner> scenarioRunners = [];
+    private readonly List<IDisposable> disposables = [];
     private Exception dataDiscoveryException;
 
     public ScenarioOutlineTestCaseRunner(

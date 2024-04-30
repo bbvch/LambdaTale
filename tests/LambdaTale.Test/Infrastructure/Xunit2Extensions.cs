@@ -9,7 +9,7 @@ public static class Xunit2Extensions
 {
     public static Queue<IMessageSinkMessage> Run(this Xunit2 runner, Queue<ITestCase> testCases, TestAssemblyConfiguration testAssemblyConfiguration)
     {
-        if (!testCases.Any())
+        if (testCases.Count == 0)
         {
             return new Queue<IMessageSinkMessage>();
         }

@@ -34,7 +34,7 @@ public class ObjectDisposalFeature : Feature
             .x(() => Assert.All(results, result => Assert.IsAssignableFrom<ITestPassed>(result)));
 
         "And the disposables should each have been disposed in reverse order"
-            .x(() => Assert.Equal(new[] { "disposed3", "disposed2", "disposed1" }, typeof(ObjectDisposalFeature).GetTestEvents()));
+            .x(() => Assert.Equal(["disposed3", "disposed2", "disposed1"], typeof(ObjectDisposalFeature).GetTestEvents()));
     }
 
     [Scenario]
@@ -56,7 +56,7 @@ public class ObjectDisposalFeature : Feature
             .x(() => Assert.IsAssignableFrom<ITestFailed>(results.Last()));
 
         "And the disposables should be disposed in reverse order"
-            .x(() => Assert.Equal(new[] { "disposed3", "disposed2", "disposed1" }, typeof(ObjectDisposalFeature).GetTestEvents()));
+            .x(() => Assert.Equal(["disposed3", "disposed2", "disposed1"], typeof(ObjectDisposalFeature).GetTestEvents()));
     }
 
     [Scenario]
@@ -74,7 +74,7 @@ public class ObjectDisposalFeature : Feature
             .x(() => Assert.Single(results.OfType<ITestFailed>()));
 
         "And the disposables should be disposed in reverse order"
-            .x(() => Assert.Equal(new[] { "disposed3", "disposed2", "disposed1" }, typeof(ObjectDisposalFeature).GetTestEvents()));
+            .x(() => Assert.Equal(["disposed3", "disposed2", "disposed1"], typeof(ObjectDisposalFeature).GetTestEvents()));
     }
 
     [Scenario]
@@ -90,7 +90,7 @@ public class ObjectDisposalFeature : Feature
             .x(() => Assert.All(results, result => Assert.IsAssignableFrom<ITestPassed>(result)));
 
         "And the disposables and teardowns should be disposed/executed in reverse order"
-            .x(() => Assert.Equal(new[] { "teardown4", "disposed3", "teardown2", "disposed1" }, typeof(ObjectDisposalFeature).GetTestEvents()));
+            .x(() => Assert.Equal(["teardown4", "disposed3", "teardown2", "disposed1"], typeof(ObjectDisposalFeature).GetTestEvents()));
     }
 
     [Scenario]
@@ -260,13 +260,7 @@ public class ObjectDisposalFeature : Feature
             this.Dispose(false);
         }
 
-        public void Use()
-        {
-            if (this.isDisposed)
-            {
-                throw new ObjectDisposedException(this.GetType().FullName);
-            }
-        }
+        public void Use() => ObjectDisposedException.ThrowIf(this.isDisposed, this);
 
         public void Dispose()
         {
