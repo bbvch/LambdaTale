@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="3.3.4" PrivateAssets="All" />
-    <PackageReference Include="xunit.extensibility.core" Version="2.8.0" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.8.1" />
   </ItemGroup>
 
   <Target Name="InitializeNuspecProperties" AfterTargets="MinVer">
