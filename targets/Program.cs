@@ -1,3 +1,4 @@
+using Targets;
 using static Bullseye.Targets;
 using static SimpleExec.Command;
 
@@ -27,6 +28,8 @@ Target(
     "test",
     DependsOn("build"),
     () => RunAsync("dotnet", $"test --no-build {commonArgs}"));
+
+Target("update-upstream", Update.Upstream);
 
 Target("default", DependsOn("format", "test", "pack"));
 

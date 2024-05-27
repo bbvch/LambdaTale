@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/ArgumentFormatter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -94,6 +94,8 @@ namespace Xunit.Sdk
 			{ typeof(short).GetTypeInfo(), "short" },
 			{ typeof(ushort).GetTypeInfo(), "ushort" },
 			{ typeof(string).GetTypeInfo(), "string" },
+			{ typeof(IntPtr).GetTypeInfo(), "nint" },
+			{ typeof(UIntPtr).GetTypeInfo(), "nuint" },
 		};
 
 		static ArgumentFormatter()
