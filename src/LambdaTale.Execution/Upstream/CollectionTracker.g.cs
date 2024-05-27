@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/CollectionTracker.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/CollectionTracker.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -41,8 +41,12 @@ namespace Xunit.Sdk
 		/// <exception cref="ArgumentNullException"></exception>
 		protected CollectionTracker(IEnumerable innerEnumerable)
 		{
+#if NET6_0_OR_GREATER
+			ArgumentNullException.ThrowIfNull(innerEnumerable);
+#else
 			if (innerEnumerable == null)
 				throw new ArgumentNullException(nameof(innerEnumerable));
+#endif
 
 			InnerEnumerable = innerEnumerable;
 		}
@@ -433,8 +437,12 @@ namespace Xunit.Sdk
 			IEnumerable<T> castCollection) :
 				base(collection)
 		{
+#if NET6_0_OR_GREATER
+			ArgumentNullException.ThrowIfNull(castCollection);
+#else
 			if (castCollection == null)
 				throw new ArgumentNullException(nameof(castCollection));
+#endif
 
 			this.collection = castCollection;
 		}

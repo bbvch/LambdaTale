@@ -1,4 +1,4 @@
-// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/AssertEqualityComparerAdapter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/AssertEqualityComparerAdapter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -26,8 +26,12 @@ namespace Xunit.Sdk
 		/// <param name="innerComparer">The comparer that is being adapted.</param>
 		public AssertEqualityComparerAdapter(IEqualityComparer<T> innerComparer)
 		{
+#if NET6_0_OR_GREATER
+			ArgumentNullException.ThrowIfNull(innerComparer);
+#else
 			if (innerComparer == null)
 				throw new ArgumentNullException(nameof(innerComparer));
+#endif
 
 			this.innerComparer = innerComparer;
 		}

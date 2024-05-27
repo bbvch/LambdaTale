@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.8.100
+
+* [xUnit 2.8.1](https://github.com/xunit/xunit/compare/2.8.0...2.8.1)
+* add script to update upstream
+
 ## 2.8.1
 
 * support default parameters
