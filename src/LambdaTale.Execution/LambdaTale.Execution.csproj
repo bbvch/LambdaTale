@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="xunit.extensibility.execution" Version="2.8.1" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.9.0" />
   </ItemGroup>
 
 </Project>
