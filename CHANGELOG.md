@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.9.0
+
+* [xUnit 2.9.0](https://github.com/xunit/xunit/compare/2.8.1...2.9.0)
+* update infrastructure
+
 ## 2.8.100
 
 * [xUnit 2.8.1](https://github.com/xunit/xunit/compare/2.8.0...2.8.1)

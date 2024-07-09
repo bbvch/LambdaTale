@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/ArgumentFormatter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.0/Sdk/ArgumentFormatter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -329,7 +329,7 @@ namespace Xunit.Sdk
 			string.Format(CultureInfo.CurrentCulture, "{0:G17}", value);
 
 		static string FormatEnumValue(object value) =>
-#if NETCOREAPP2_0_OR_GREATER
+#if NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 			value.ToString()?.Replace(", ", " | ", StringComparison.Ordinal) ?? "null";
 #else
 			value.ToString()?.Replace(", ", " | ") ?? "null";
@@ -376,7 +376,7 @@ namespace Xunit.Sdk
 
 		static string FormatStringValue(string value)
 		{
-#if NETCOREAPP2_0_OR_GREATER
+#if NETCOREAPP2_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 			value = EscapeString(value).Replace(@"""", @"\""", StringComparison.Ordinal); // escape double quotes
 #else
 			value = EscapeString(value).Replace(@"""", @"\"""); // escape double quotes
@@ -467,7 +467,7 @@ namespace Xunit.Sdk
 			if (result == null)
 				return typeInfo.Name;
 
-#if NETCOREAPP2_1_OR_GREATER
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 			var tickIdx = result.IndexOf('`', StringComparison.Ordinal);
 #else
 			var tickIdx = result.IndexOf('`');
@@ -527,7 +527,7 @@ namespace Xunit.Sdk
 			if (typeInfo.GetCustomAttribute(typeof(CompilerGeneratedAttribute)) == null)
 				return false;
 
-#if NETCOREAPP2_1_OR_GREATER
+#if NETCOREAPP2_1_OR_GREATER || NETSTANDARD2_1_OR_GREATER
 			return typeInfo.Name.Contains("AnonymousType", StringComparison.Ordinal);
 #else
 			return typeInfo.Name.Contains("AnonymousType");
