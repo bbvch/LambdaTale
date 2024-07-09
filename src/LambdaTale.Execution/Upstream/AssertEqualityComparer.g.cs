@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/AssertEqualityComparer.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.0/Sdk/AssertEqualityComparer.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -185,6 +185,10 @@ namespace Xunit.Sdk
 				return true;
 			if (x == null || y == null)
 				return false;
+
+			// If you point at the same thing, you're equal
+			if (ReferenceEquals(x, y))
+				return true;
 
 			// Implements IEquatable<T>?
 			var equatable = x as IEquatable<T>;

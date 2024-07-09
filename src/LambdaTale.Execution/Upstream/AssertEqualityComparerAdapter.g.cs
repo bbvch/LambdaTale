@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.8.1/Sdk/AssertEqualityComparerAdapter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.0/Sdk/AssertEqualityComparerAdapter.cs
 #if XUNIT_NULLABLE
 #nullable enable
 #else
