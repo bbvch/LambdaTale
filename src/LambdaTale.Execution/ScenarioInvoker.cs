@@ -16,6 +16,7 @@ public class ScenarioInvoker
 {
     private readonly IScenario scenario;
     private readonly IMessageBus messageBus;
+    private readonly TestOutputHelper testOutputHelper;
     private readonly Type scenarioClass;
     private readonly object[] constructorArguments;
     private readonly MethodInfo scenarioMethod;
@@ -40,7 +41,8 @@ public class ScenarioInvoker
         this.scenario = scenario ?? throw new ArgumentNullException(nameof(scenario));
         this.messageBus = messageBus ?? throw new ArgumentNullException(nameof(messageBus));
         this.scenarioClass = scenarioClass ?? throw new ArgumentNullException(nameof(scenarioClass));
-        this.constructorArguments = constructorArguments;
+        this.testOutputHelper = new TestOutputHelper(this.messageBus);
+        this.constructorArguments = constructorArguments.Select(arg => arg is Func<ITestOutputHelper> ? this.testOutputHelper : arg).ToArray();
         this.scenarioMethod = scenarioMethod ?? throw new ArgumentNullException(nameof(scenarioMethod));
         this.scenarioMethodArguments = scenarioMethodArguments;
         this.beforeAfterScenarioAttributes = beforeAfterScenarioAttributes ?? throw new ArgumentNullException(nameof(beforeAfterScenarioAttributes));
@@ -92,13 +94,13 @@ public class ScenarioInvoker
 
     private object CreateScenarioClass()
     {
-        object testClass = null;
-
-        if (!this.scenarioMethod.IsStatic && !this.aggregator.HasExceptions)
+        if (this.scenarioMethod.IsStatic || this.aggregator.HasExceptions)
         {
-            this.timer.Aggregate(() => testClass = Activator.CreateInstance(this.scenarioClass, this.constructorArguments));
+            return null;
         }
 
+        object testClass = null;
+        this.timer.Aggregate(() => testClass = Activator.CreateInstance(this.scenarioClass, this.constructorArguments));
         return testClass;
     }
 
@@ -179,7 +181,8 @@ public class ScenarioInvoker
     }
 
     private async Task<RunSummary> InvokeStepsAsync(
-        ICollection<IStepDefinition> backGroundStepDefinitions, ICollection<IStepDefinition> scenarioStepDefinitions)
+        ICollection<IStepDefinition> backGroundStepDefinitions,
+        ICollection<IStepDefinition> scenarioStepDefinitions)
     {
         var scenarioTypeInfo = this.scenarioClass.GetTypeInfo();
         var filters = scenarioTypeInfo.Assembly.GetCustomAttributes(typeof(Attribute))
@@ -203,6 +206,7 @@ public class ScenarioInvoker
                 stepDefinition.DisplayTextFunc?.Invoke(stepDefinition.Text, stepNumber <= backGroundStepDefinitions.Count));
 
             var step = new StepTest(this.scenario, stepDisplayName);
+            this.testOutputHelper.SetScope(step);
 
             using var interceptingBus = new DelegatingMessageBus(
                 this.messageBus,
@@ -218,7 +222,6 @@ public class ScenarioInvoker
             var stepRunner = new StepTestRunner(
                 stepContext,
                 stepDefinition.Body,
-                step,
                 interceptingBus,
                 this.scenarioClass,
                 this.constructorArguments,

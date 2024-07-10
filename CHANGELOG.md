@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.1
+
+support injecting `ITestOutputHelper` (with some [Gotchas](./README.md#gotchas))
+
 ## 2.9.0
 
 * [xUnit 2.9.0](https://github.com/xunit/xunit/compare/2.8.1...2.9.0)
