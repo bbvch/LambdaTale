@@ -80,6 +80,10 @@ public class SomeFeature
 }
 ```
 
+### Gotchas
+
+The `ITestOutputHelper` will only write to test steps. Messages written before the first step (e.g. in the constructor, `[Background]`, outside step definitions) will be logged as part of the first step, messages written after the last step (e.g. inside `Dispose`) will be logged as part of the last step.
+
 ## Packages
 
 The [`LambdaTale` package](https://www.nuget.org/packages/bbv.LambdaTale) depends on the [`xunit.core` package](https://www.nuget.org/packages/xunit.core/). That means you get only the minimum dependencies required to write and execute LambdaTale scenarios.

@@ -17,7 +17,6 @@ public class StepTestRunner : XunitTestRunner
     public StepTestRunner(
         IStepContext stepContext,
         Func<IStepContext, Task> body,
-        ITest test,
         IMessageBus messageBus,
         Type scenarioClass,
         object[] constructorArguments,
@@ -28,7 +27,7 @@ public class StepTestRunner : XunitTestRunner
         ExceptionAggregator aggregator,
         CancellationTokenSource cancellationTokenSource)
         : base(
-            test,
+            stepContext.Step,
             messageBus,
             scenarioClass,
             constructorArguments,
