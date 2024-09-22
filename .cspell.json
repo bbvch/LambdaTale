@@ -23,7 +23,13 @@
     },
     {
       "languageId": "csproj",
-      "words": ["buildtransitive", "contentfiles", "linq", "ruleset", "visualstudio"]
+      "words": [
+        "buildtransitive",
+        "contentfiles",
+        "linq",
+        "ruleset",
+        "visualstudio"
+      ]
     },
     {
       "languageId": "nuspec",

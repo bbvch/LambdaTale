@@ -1,7 +1,6 @@
 # LambdaTale
 
-_[![LambdaTale NuGet version](https://img.shields.io/nuget/v/bbv.LambdaTale?label=bbv.LambdaTale
-)](https://www.nuget.org/packages/bbv.LambdaTale)_ is a [xUnit.net](https://github.com/xunit/xunit) extension for describing each step in a test with natural language.
+_[![LambdaTale NuGet version](https://img.shields.io/nuget/v/bbv.LambdaTale?label=bbv.LambdaTale)](https://www.nuget.org/packages/bbv.LambdaTale)_ is a [xUnit.net](https://github.com/xunit/xunit) extension for describing each step in a test with natural language.
 
 > [!NOTE]
 > This is a fork of [xBehave.net](https://github.com/adamralph/xbehave.net). Adam, thank you very much!
