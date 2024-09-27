@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.200
+
+[xUnit 2.9.2](https://github.com/xunit/xunit/compare/2.9.0...2.9.2)
+
 ## 2.9.2
 
 cleanup suppressions (mostly)
