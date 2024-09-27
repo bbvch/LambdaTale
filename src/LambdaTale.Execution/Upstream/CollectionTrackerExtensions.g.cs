@@ -1,4 +1,12 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.0/Sdk/CollectionTrackerExtensions.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.2/Sdk/CollectionTrackerExtensions.cs
+#pragma warning disable IDE0040 // Add accessibility modifiers
+#pragma warning disable IDE0046 // Convert to conditional expression
+#pragma warning disable IDE0058 // Expression value is never used
+#pragma warning disable IDE0078 // Use pattern matching
+#pragma warning disable IDE0090 // Use 'new(...)'
+#pragma warning disable IDE0161 // Convert to file-scoped namespace
+#pragma warning disable IDE0300 // Simplify collection initialization
+
 #if XUNIT_NULLABLE
 #nullable enable
 #else
@@ -55,7 +63,7 @@ namespace Xunit.Sdk
 		/// </summary>
 		/// <param name="enumerable">The enumerable to be wrapped</param>
 #if XUNIT_NULLABLE
-		[return: NotNullIfNotNull("enumerable")]
+		[return: NotNullIfNotNull(nameof(enumerable))]
 		public static CollectionTracker? AsTracker(this IEnumerable? enumerable)
 #else
 		public static CollectionTracker AsTracker(this IEnumerable enumerable)
@@ -92,7 +100,7 @@ namespace Xunit.Sdk
 		/// <typeparam name="T">The item type of the collection</typeparam>
 		/// <param name="enumerable">The enumerable to be wrapped</param>
 #if XUNIT_NULLABLE
-		[return: NotNullIfNotNull("enumerable")]
+		[return: NotNullIfNotNull(nameof(enumerable))]
 		public static CollectionTracker<T>? AsTracker<T>(this IEnumerable<T>? enumerable) =>
 #else
 		public static CollectionTracker<T> AsTracker<T>(this IEnumerable<T> enumerable) =>
