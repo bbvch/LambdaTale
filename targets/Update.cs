@@ -42,8 +42,8 @@ public static partial class Update
         }
     }
 
-    // UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.7.0/Sdk/ArgumentFormatter.cs
-    [GeneratedRegex(@"https://raw\.githubusercontent\.com/[^/]+/[^/]+/(?<version>[^/]+)/.*")]
+    // UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.7.0/Sdk/ArgumentFormatter.cs
+    [GeneratedRegex(@"https://raw\.githubusercontent\.com/[^/]+/[^/]+/v2-(?<version>[^/]+)/.*")]
     private static partial Regex VersionedUpstream();
 
     private static string GetThisFilePath([CallerFilePath] string path = null) => path;

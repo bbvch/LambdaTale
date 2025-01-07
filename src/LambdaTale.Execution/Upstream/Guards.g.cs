@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/2.9.2/Guards.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.2/Guards.cs
 #pragma warning disable CA1052 // Static holder types should be static
 #pragma warning disable IDE0046 // Convert to conditional expression
 #pragma warning disable IDE0161 // Convert to file-scoped namespace
