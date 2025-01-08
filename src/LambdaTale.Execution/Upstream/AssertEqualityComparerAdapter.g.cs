@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.2/Sdk/AssertEqualityComparerAdapter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.3/Sdk/AssertEqualityComparerAdapter.cs
 #pragma warning disable IDE0016 // Use 'throw' expression
 #pragma warning disable IDE0040 // Add accessibility modifiers
 #pragma warning disable IDE0161 // Convert to file-scoped namespace

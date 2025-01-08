@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.2/Sdk/AssertEqualityComparer.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.3/Sdk/AssertEqualityComparer.cs
 #pragma warning disable CA1031 // Do not catch general exception types
 #pragma warning disable CA1032 // Implement standard exception constructors
 #pragma warning disable IDE0016 // Use 'throw' expression
