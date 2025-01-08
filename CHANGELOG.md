@@ -2,12 +2,12 @@
 
 ## 2.9.300
 
-- [xUnit 2.9.3](https://github.com/xunit/xunit/compare/2.9.2...2.9.3)
+- [xUnit 2.9.3](https://github.com/xunit/xunit/compare/v2-2.9.2...v2-2.9.3)
 - update infrastructure
 
 ## 2.9.200
 
-[xUnit 2.9.2](https://github.com/xunit/xunit/compare/2.9.0...2.9.2)
+[xUnit 2.9.2](https://github.com/xunit/xunit/compare/v2-2.9.0...v2-2.9.2)
 
 ## 2.9.2
 
@@ -19,12 +19,12 @@ support injecting `ITestOutputHelper` (with some [Gotchas](./README.md#gotchas))
 
 ## 2.9.0
 
-- [xUnit 2.9.0](https://github.com/xunit/xunit/compare/2.8.1...2.9.0)
+- [xUnit 2.9.0](https://github.com/xunit/xunit/compare/v2-2.8.1...v2-2.9.0)
 - update infrastructure
 
 ## 2.8.100
 
-- [xUnit 2.8.1](https://github.com/xunit/xunit/compare/2.8.0...2.8.1)
+- [xUnit 2.8.1](https://github.com/xunit/xunit/compare/v2-2.8.0...v2-2.8.1)
 - add script to update upstream
 
 ## 2.8.1
@@ -34,31 +34,31 @@ support injecting `ITestOutputHelper` (with some [Gotchas](./README.md#gotchas))
 
 ## 2.8.0
 
-- [xUnit 2.8.0](https://github.com/xunit/xunit/compare/2.7.1...2.8.0)
+- [xUnit 2.8.0](https://github.com/xunit/xunit/compare/v2-2.7.1...v2-2.8.0)
 - update infrastructure
 
 ## 2.7.100
 
-- [xUnit 2.7.1](https://github.com/xunit/xunit/compare/2.7.0...2.7.1)
+- [xUnit 2.7.1](https://github.com/xunit/xunit/compare/v2-2.7.0...v2-2.7.1)
 - update infrastructure
 
 ## 2.7.0
 
-- [xUnit 2.7.0](https://github.com/xunit/xunit/compare/2.6.6...2.7.0)
+- [xUnit 2.7.0](https://github.com/xunit/xunit/compare/v2-2.6.6...v2-2.7.0)
 - update infrastructure (GH actions, test dependencies)
 
 ## 2.6.600
 
-- [xUnit 2.6.6](https://github.com/xunit/xunit/compare/2.6.5...2.6.6)
+- [xUnit 2.6.6](https://github.com/xunit/xunit/compare/v2-2.6.5...v2-2.6.6)
 - update infrastructure (xUnit now internal, removed Xunit.XunitAssert)
 
 ## 2.6.500
 
-[xUnit 2.6.5](https://github.com/xunit/xunit/compare/2.6.3...2.6.5)
+[xUnit 2.6.5](https://github.com/xunit/xunit/compare/v2-2.6.3...v2-2.6.5)
 
 ## 2.6.300
 
-[xUnit 2.6.3](https://github.com/xunit/xunit/releases/tag/2.6.3)
+[xUnit 2.6.3](https://github.com/xunit/xunit/releases/tag/v2-2.6.3)
 
 ## 2.6.201
 
@@ -68,11 +68,11 @@ support injecting `ITestOutputHelper` (with some [Gotchas](./README.md#gotchas))
 ## 2.6.200
 
 - `Spec` method by @asbjornu
-- [xUnit 2.6.2](https://github.com/xunit/xunit/releases/tag/2.6.2)
+- [xUnit 2.6.2](https://github.com/xunit/xunit/releases/tag/v2-2.6.2)
 
 ## 2.5.100
 
-[xUnit 2.5.1](https://github.com/xunit/xunit/releases/tag/2.5.1)
+[xUnit 2.5.1](https://github.com/xunit/xunit/releases/tag/v2-2.5.1)
 
 ## 2.5.3
 
