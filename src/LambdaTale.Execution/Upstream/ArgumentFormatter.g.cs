@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.2/Sdk/ArgumentFormatter.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.3/Sdk/ArgumentFormatter.cs
 #pragma warning disable CA1031 // Do not catch general exception types
 #pragma warning disable CA1707 // Identifiers should not contain underscores
 #pragma warning disable CA1810 // Initialize reference type static fields inline

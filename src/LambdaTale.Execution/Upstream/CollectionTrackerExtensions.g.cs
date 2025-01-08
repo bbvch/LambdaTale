@@ -1,4 +1,4 @@
-﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.2/Sdk/CollectionTrackerExtensions.cs
+﻿// UPSTREAM: https://raw.githubusercontent.com/xunit/assert.xunit/v2-2.9.3/Sdk/CollectionTrackerExtensions.cs
 #pragma warning disable IDE0040 // Add accessibility modifiers
 #pragma warning disable IDE0046 // Convert to conditional expression
 #pragma warning disable IDE0058 // Expression value is never used
