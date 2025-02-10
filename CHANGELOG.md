@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.301
+
+update infrastructure and xUnit runner
+
 ## 2.9.300
 
 - [xUnit 2.9.3](https://github.com/xunit/xunit/compare/v2-2.9.2...v2-2.9.3)
