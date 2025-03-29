@@ -8,6 +8,12 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
+  <!-- assembly signing -->
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)LambdaTale.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MinVer" PrivateAssets="All" />
   </ItemGroup>
