@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.302
+
+add strong name by @thomaslevesque
+
 ## 2.9.301
 
 update infrastructure and xUnit runner
