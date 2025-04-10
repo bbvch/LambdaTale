@@ -8,17 +8,17 @@ Target("restore", () => RunAsync("dotnet", "restore --locked-mode"));
 
 Target(
     "build",
-    DependsOn("restore"),
+    ["restore"],
     () => RunAsync("dotnet", $"build --no-restore {commonArgs} /p:ContinuousIntegrationBuild=true"));
 
 Target(
     "format",
-    DependsOn("restore"),
+    ["restore"],
     () => RunAsync("dotnet", "format --no-restore --verify-no-changes"));
 
 Target(
     "pack",
-    DependsOn("build"),
+    ["build"],
     () => RunAsync(
         "dotnet",
         $"pack src/LambdaTale --no-build {commonArgs}",
@@ -26,11 +26,11 @@ Target(
 
 Target(
     "test",
-    DependsOn("build"),
+    ["build"],
     () => RunAsync("dotnet", $"test --no-build {commonArgs}"));
 
 Target("update-upstream", Update.Upstream);
 
-Target("default", DependsOn("format", "test", "pack"));
+Target("default", ["format", "test", "pack"]);
 
 await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);
