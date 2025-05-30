@@ -1,3 +1,0 @@
-LambdaTale.Specifications
-static LambdaTale.Specifications.Spec(string text, System.Action body) -> LambdaTale.Sdk.IStepBuilder
-static LambdaTale.Specifications.Spec(string text, System.Func<System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
