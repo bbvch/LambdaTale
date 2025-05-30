@@ -13,18 +13,18 @@
     <tags>testing xunit</tags>
     <version>$Version$</version>
     <dependencies>
-      <group targetFramework=".NETStandard2.0">
-        <dependency id="xunit.core" version="[2.9.3, 2.10)" />
-        <dependency id="xunit.extensibility.execution" version="[2.9.3, 2.10)" />
+      <group targetFramework=".NETFramework4.6.2">
+        <dependency id="xunit.core" version="[2.9.0, 2.10)" />
+        <dependency id="xunit.extensibility.execution" version="[2.9.0, 2.10)" />
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="..\..\README.md" target="docs\" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.dll" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.pdb" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.xml" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.dll" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.pdb" target="lib\netstandard2.0" />
+    <file src="bin\Release\net462\LambdaTale.dll" target="lib\net462" />
+    <file src="bin\Release\net462\LambdaTale.pdb" target="lib\net462" />
+    <file src="bin\Release\net462\LambdaTale.xml" target="lib\net462" />
+    <file src="..\LambdaTale.Execution\bin\Release\net462\LambdaTale.Execution.dll" target="lib\net462" />
+    <file src="..\LambdaTale.Execution\bin\Release\net462\LambdaTale.Execution.pdb" target="lib\net462" />
   </files>
 </package>

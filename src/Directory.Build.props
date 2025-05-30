@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <AnalysisMode>All</AnalysisMode>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
