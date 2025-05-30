@@ -5,8 +5,8 @@
   </Folder>
   <Folder Name="/src/">
     <File Path="src/Directory.Build.props" />
-    <Project Path="src/LambdaTale.Execution/LambdaTale.Execution.csproj" />
     <Project Path="src/LambdaTale/LambdaTale.csproj" />
+    <Project Path="src/LambdaTale.Execution/LambdaTale.Execution.csproj" />
   </Folder>
   <Folder Name="/targets/">
     <Project Path="targets/Targets.csproj" />

@@ -44,6 +44,7 @@ LambdaTale.Sdk.IStepDefinition.Teardown(System.Func<LambdaTale.Sdk.IStepContext,
 LambdaTale.Sdk.IStepDefinition.Teardowns.get -> System.Collections.Generic.ICollection<System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task>>
 LambdaTale.Sdk.IStepDefinition.Text.get -> string
 LambdaTale.Sdk.IStepDefinition.Text.set -> void
+LambdaTale.Specifications
 LambdaTale.StringExtensions
 override LambdaTale.ExampleAttribute.GetData(System.Reflection.MethodInfo testMethod) -> System.Collections.Generic.IEnumerable<object[]>
 static LambdaTale.DisposableExtensions.Using<T>(this T disposable, LambdaTale.Sdk.IStepContext stepContext) -> T
@@ -56,7 +57,10 @@ static LambdaTale.IStepDefinitionExtensions.Teardown(this LambdaTale.Sdk.IStepDe
 static LambdaTale.Sdk.CurrentThread.Add(LambdaTale.Sdk.IStepDefinition item) -> void
 static LambdaTale.Sdk.CurrentThread.EnterStepDefinitionContext() -> System.IDisposable
 static LambdaTale.Sdk.CurrentThread.StepDefinitions.get -> System.Collections.Generic.IEnumerable<LambdaTale.Sdk.IStepDefinition>
+static LambdaTale.Specifications.Spec(string text, System.Action body) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.Specifications.Spec(string text, System.Func<System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
 static LambdaTale.StringExtensions.x(this string text, System.Action body) -> LambdaTale.Sdk.IStepBuilder
 static LambdaTale.StringExtensions.x(this string text, System.Action<LambdaTale.Sdk.IStepContext> body) -> LambdaTale.Sdk.IStepBuilder
-static LambdaTale.StringExtensions.x(this string text, System.Func<System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
 static LambdaTale.StringExtensions.x(this string text, System.Func<LambdaTale.Sdk.IStepContext, System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
+static LambdaTale.StringExtensions.x(this string text, System.Func<System.Threading.Tasks.Task> body) -> LambdaTale.Sdk.IStepBuilder
+virtual LambdaTale.Sdk.GetStepDisplayText.Invoke(string stepText, bool isBackgroundStep) -> string
