@@ -13,7 +13,11 @@
     <tags>testing xunit</tags>
     <version>$Version$</version>
     <dependencies>
-      <group targetFramework=".NETStandard2.0">
+      <group targetFramework="$SupportedDotnetVersion$">
+        <dependency id="xunit.core" version="[2.9.3, 2.10)" />
+        <dependency id="xunit.extensibility.execution" version="[2.9.3, 2.10)" />
+      </group>
+      <group targetFramework="$SupportedFrameworkVersion$">
         <dependency id="xunit.core" version="[2.9.3, 2.10)" />
         <dependency id="xunit.extensibility.execution" version="[2.9.3, 2.10)" />
       </group>
@@ -21,10 +25,17 @@
   </metadata>
   <files>
     <file src="..\..\README.md" target="docs\" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.dll" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.pdb" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.xml" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.dll" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.pdb" target="lib\netstandard2.0" />
+
+    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.dll" target="lib\$SupportedDotnetVersion$" />
+    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.pdb" target="lib\$SupportedDotnetVersion$" />
+    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.xml" target="lib\$SupportedDotnetVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\LambdaTale.Execution.dll" target="lib\$SupportedDotnetVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\LambdaTale.Execution.pdb" target="lib\$SupportedDotnetVersion$" />
+
+    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.dll" target="lib\$SupportedFrameworkVersion$" />
+    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.pdb" target="lib\$SupportedFrameworkVersion$" />
+    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.xml" target="lib\$SupportedFrameworkVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\LambdaTale.Execution.dll" target="lib\$SupportedFrameworkVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\LambdaTale.Execution.pdb" target="lib\$SupportedFrameworkVersion$" />
   </files>
 </package>

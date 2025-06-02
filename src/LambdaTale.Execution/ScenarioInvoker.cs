@@ -177,7 +177,7 @@ public class ScenarioInvoker
     }
 
     private async Task<RunSummary> InvokeStepsAsync(
-        ICollection<IStepDefinition> backGroundStepDefinitions,
+        List<IStepDefinition> backgroundStepDefinitions,
         ICollection<IStepDefinition> scenarioStepDefinitions)
     {
         var scenarioTypeInfo = this.scenarioClass.GetTypeInfo();
@@ -191,7 +191,7 @@ public class ScenarioInvoker
         var scenarioTeardowns = new List<Tuple<StepContext, Func<IStepContext, Task>>>();
         var stepNumber = 0;
         foreach (var stepDefinition in filters.Aggregate(
-                    backGroundStepDefinitions.Concat(scenarioStepDefinitions),
+                    backgroundStepDefinitions.Concat(scenarioStepDefinitions),
                     (current, filter) => filter.Filter(current)))
         {
             stepDefinition.SkipReason ??= skipReason;
@@ -199,7 +199,7 @@ public class ScenarioInvoker
             var stepDisplayName = GetStepDisplayName(
                 this.scenario.DisplayName,
                 ++stepNumber,
-                stepDefinition.DisplayTextFunc?.Invoke(stepDefinition.Text, stepNumber <= backGroundStepDefinitions.Count));
+                stepDefinition.DisplayTextFunc?.Invoke(stepDefinition.Text, stepNumber <= backgroundStepDefinitions.Count));
 
             var step = new StepTest(this.scenario, stepDisplayName);
             this.testOutputHelper.SetScope(step);
@@ -244,7 +244,7 @@ public class ScenarioInvoker
             scenarioTeardowns.AddRange(stepTeardowns);
         }
 
-        if (scenarioTeardowns.Any())
+        if (scenarioTeardowns.Count != 0)
         {
             scenarioTeardowns.Reverse();
             var teardownTimer = new ExecutionTimer();
