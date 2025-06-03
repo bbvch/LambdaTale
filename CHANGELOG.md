@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.305
+
+target .NET 4.7.2 and .NET 8.0, 'best-effort' support for netstandard 2.0
+
 ## 2.9.304
 
 multi-target .NET 4.7.2 and .NET 6.0

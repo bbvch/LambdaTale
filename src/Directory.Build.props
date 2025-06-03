@@ -4,7 +4,7 @@
 
   <PropertyGroup>
     <AnalysisMode>All</AnalysisMode>
-    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion)</TargetFrameworks>
+    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion);netstandard2.0</TargetFrameworks>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
   </PropertyGroup>
