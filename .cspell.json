@@ -12,11 +12,17 @@
   "languageSettings": [
     {
       "languageId": "csharp",
-      "words": ["bazz", "browsable", "nologo", "zyxwvutsrq"]
+      "words": ["bazz", "browsable", "netcoreapp", "nologo", "zyxwvutsrq"]
     },
     {
       "languageId": "csproj",
-      "words": ["buildtransitive", "contentfiles", "linq", "visualstudio"]
+      "words": [
+        "buildtransitive",
+        "contentfiles",
+        "linq",
+        "netcoreapp",
+        "visualstudio"
+      ]
     },
     {
       "languageId": "nuspec",
@@ -41,5 +47,5 @@
       "languageId": "props"
     }
   ],
-  "words": ["asbjornu", "teardowns", "thomaslevesque", "xunit"]
+  "words": ["asbjornu", "netstandard", "teardowns", "thomaslevesque", "xunit"]
 }

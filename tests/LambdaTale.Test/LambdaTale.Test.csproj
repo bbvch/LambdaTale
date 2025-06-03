@@ -3,7 +3,7 @@
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <RollForward>major</RollForward>
-    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion);$(LatestDotnetVersion)</TargetFrameworks>
+    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion);$(LatestDotnetVersion);netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>

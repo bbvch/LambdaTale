@@ -44,6 +44,9 @@ await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);
 static IEnumerable<string> TargetFrameworks()
 {
     var data = Assembly.GetExecutingAssembly().GetCustomAttributes<AssemblyMetadataAttribute>();
+    yield return "netcoreapp3.1";
+    yield return "net5.0";
+    yield return "net6.0";
     yield return data.Single(d => d.Key == "SupportedDotnetVersion").Value;
     yield return data.Single(d => d.Key == "LatestDotnetVersion").Value;
     if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
