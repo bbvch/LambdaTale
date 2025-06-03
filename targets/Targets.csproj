@@ -3,8 +3,23 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <RollForward>major</RollForward>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>$(LatestDotnetVersion)</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="AssemblyMetadata">
+      <_Parameter1>SupportedDotnetVersion</_Parameter1>
+      <_Parameter2>$(SupportedDotnetVersion)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="AssemblyMetadata">
+      <_Parameter1>SupportedFrameworkVersion</_Parameter1>
+      <_Parameter2>$(SupportedFrameworkVersion)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="AssemblyMetadata">
+      <_Parameter1>LatestDotnetVersion</_Parameter1>
+      <_Parameter2>$(LatestDotnetVersion)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Bullseye" />

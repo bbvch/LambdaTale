@@ -10,7 +10,7 @@ _[![LambdaTale NuGet version](https://img.shields.io/nuget/v/bbv.LambdaTale?labe
 [![Lint](https://github.com/bbvch/LambdaTale/actions/workflows/lint.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions/workflows/lint.yml)
 [![Spell check](https://github.com/bbvch/LambdaTale/actions/workflows/spell-check.yml/badge.svg)](https://github.com/bbvch/LambdaTale/actions/workflows/spell-check.yml)
 
-Platform support: [.NET Standard 2.0 and upwards](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
+Platform support: [.NET 8](https://learn.microsoft.com/en-us/dotnet/core/whats-new/dotnet-8) and [.NET 4.7.2](https://learn.microsoft.com/en-us/dotnet/framework/whats-new) upwards.
 
 ## Usage
 

@@ -12,32 +12,19 @@
   "languageSettings": [
     {
       "languageId": "csharp",
-      "words": [
-        "bazz",
-        "browsable",
-        "namespaceanddescendants",
-        "netcoreapp",
-        "nologo",
-        "zyxwvutsrq"
-      ]
+      "words": ["bazz", "browsable", "nologo", "zyxwvutsrq"]
     },
     {
       "languageId": "csproj",
-      "words": [
-        "buildtransitive",
-        "contentfiles",
-        "linq",
-        "ruleset",
-        "visualstudio"
-      ]
+      "words": ["buildtransitive", "contentfiles", "linq", "visualstudio"]
     },
     {
       "languageId": "nuspec",
-      "words": ["netstandard", "schweizer"]
+      "words": ["schweizer"]
     },
     {
       "languageId": "props",
-      "words": ["analyzers", "linq", "netstandard"]
+      "words": ["analyzers", "linq"]
     }
   ],
   "overrides": [

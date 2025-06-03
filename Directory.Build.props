@@ -1,6 +1,9 @@
 <Project>
 
   <PropertyGroup>
+    <SupportedDotnetVersion>net8.0</SupportedDotnetVersion>
+    <SupportedFrameworkVersion>net472</SupportedFrameworkVersion>
+    <LatestDotnetVersion>net9.0</LatestDotnetVersion>
     <Deterministic>true</Deterministic>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <LangVersion>12.0</LangVersion>

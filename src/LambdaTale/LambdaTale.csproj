@@ -13,6 +13,8 @@
   <Target Name="InitializeNuspecProperties" AfterTargets="MinVer">
 
     <ItemGroup>
+      <NuspecProperty Include="SupportedDotnetVersion=$(SupportedDotnetVersion)" />
+      <NuspecProperty Include="SupportedFrameworkVersion=$(SupportedFrameworkVersion)" />
       <NuspecProperty Include="RepositoryCommit=$(SourceRevisionId)" />
       <NuspecProperty Include="RepositoryType=$(RepositoryType)" />
       <NuspecProperty Include="RepositoryUrl=$(PrivateRepositoryUrl)" />

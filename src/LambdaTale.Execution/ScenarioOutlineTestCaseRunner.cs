@@ -69,7 +69,7 @@ public class ScenarioOutlineTestCaseRunner(
                 }
             }
 
-            if (!this.scenarioRunners.Any())
+            if (this.scenarioRunners.Count == 0)
             {
                 var info = new ScenarioInfo(this.TestCase.TestMethod.Method, NoArguments, this.DisplayName);
                 var test = new Scenario(this.TestCase, info.ScenarioDisplayName);

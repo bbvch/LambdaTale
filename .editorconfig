@@ -138,7 +138,11 @@ dotnet_style_require_accessibility_modifiers                              = for_
 file_header_template                                                      = unset
 indent_size                                                               = 4
 
+dotnet_diagnostic.CA1019.severity                                         = suggestion
+dotnet_diagnostic.CA1031.severity                                         = suggestion
 dotnet_diagnostic.CA1034.severity                                         = none
+dotnet_diagnostic.CA1716.severity                                         = suggestion
+dotnet_diagnostic.CA1813.severity                                         = suggestion
 dotnet_diagnostic.CA2007.severity                                         = none
 
 [*.sh]

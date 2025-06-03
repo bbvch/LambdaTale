@@ -10,5 +10,5 @@ namespace LambdaTale;
 public class BackgroundAttribute : Attribute
 {
     [AttributeUsage(AttributeTargets.Class)]
-    private class IgnoreXunitAnalyzersRule1013Attribute : Attribute;
+    private sealed class IgnoreXunitAnalyzersRule1013Attribute : Attribute;
 }

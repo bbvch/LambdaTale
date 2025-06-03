@@ -56,11 +56,11 @@ public class ScenarioInfo
     }
 
     private static ITypeInfo InferTypeArgument(
-        string typeParameterName, IReadOnlyList<IParameterInfo> parameters, IReadOnlyList<object> passedArguments)
+        string typeParameterName, List<IParameterInfo> parameters, object[] passedArguments)
     {
         var sawNullValue = false;
         ITypeInfo typeArgument = null;
-        for (var index = 0; index < Math.Min(parameters.Count, passedArguments.Count); ++index)
+        for (var index = 0; index < Math.Min(parameters.Count, passedArguments.Length); ++index)
         {
             var parameterType = parameters[index].ParameterType;
             if (parameterType.IsGenericParameter && parameterType.Name == typeParameterName)
@@ -85,10 +85,10 @@ public class ScenarioInfo
     }
 
     private static IEnumerable<Argument> GetGeneratedArguments(
-        IReadOnlyList<ITypeInfo> typeParameters,
-        IReadOnlyList<ITypeInfo> typeArguments,
-        IReadOnlyList<IParameterInfo> parameters,
-        IReadOnlyList<ParameterInfo> parameterInfos,
+        List<ITypeInfo> typeParameters,
+        ITypeInfo[] typeArguments,
+        List<IParameterInfo> parameters,
+        ParameterInfo[] parameterInfos,
         int passedArgumentsCount)
     {
         for (var missingArgumentIndex = passedArgumentsCount;
@@ -128,7 +128,7 @@ public class ScenarioInfo
     private static string GetScenarioDisplayName(
         string scenarioOutlineDisplayName,
         IReadOnlyList<ITypeInfo> typeArguments,
-        IReadOnlyList<IParameterInfo> parameters,
+        List<IParameterInfo> parameters,
         IReadOnlyList<Argument> arguments)
     {
         var typeArgumentsString = typeArguments.Any()
@@ -158,7 +158,7 @@ public class ScenarioInfo
         return $"{scenarioOutlineDisplayName}{typeArgumentsString}({string.Join(", ", parameterAndArgumentTokens)})";
     }
 
-    private class Argument
+    private sealed class Argument
     {
         private static readonly MethodInfo genericFactoryMethod = CreateGenericFactoryMethod();
 

@@ -260,7 +260,13 @@ public class ObjectDisposalFeature : Feature
             this.Dispose(false);
         }
 
-        public void Use() => ObjectDisposedException.ThrowIf(this.isDisposed, this);
+        public void Use()
+        {
+            if (this.isDisposed)
+            {
+                throw new ObjectDisposedException(this.GetType().FullName);
+            }
+        }
 
         public void Dispose()
         {

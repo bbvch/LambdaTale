@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace LambdaTale.Sdk;
 
-internal class StepDefinition : IStepDefinition
+internal sealed class StepDefinition : IStepDefinition
 {
     public string Text { get; set; }
 
