@@ -38,7 +38,7 @@
         }
       }
     },
-    "net8.0": {
+    "net6.0": {
       "MinVer": {
         "type": "Direct",
         "requested": "[6.0.0, )",

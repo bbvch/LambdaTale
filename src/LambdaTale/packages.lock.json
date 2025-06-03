@@ -29,7 +29,7 @@
         "contentHash": "pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg=="
       }
     },
-    "net8.0": {
+    "net6.0": {
       "Microsoft.CodeAnalysis.PublicApiAnalyzers": {
         "type": "Direct",
         "requested": "[4.14.0, )",
