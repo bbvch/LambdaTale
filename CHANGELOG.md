@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.9.304
+
+multi-target .NET 4.7.2 and .NET 6.0
+
 ## 2.9.303
 
 multi-target .NET 4.7.2 and .NET 8.0

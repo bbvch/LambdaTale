@@ -1,7 +1,7 @@
 <Project>
 
   <PropertyGroup>
-    <SupportedDotnetVersion>net8.0</SupportedDotnetVersion>
+    <SupportedDotnetVersion>net6.0</SupportedDotnetVersion>
     <SupportedFrameworkVersion>net472</SupportedFrameworkVersion>
     <LatestDotnetVersion>net9.0</LatestDotnetVersion>
     <Deterministic>true</Deterministic>
