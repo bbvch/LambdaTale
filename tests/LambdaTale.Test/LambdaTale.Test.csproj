@@ -21,14 +21,14 @@
     </When>
     <When Condition="$([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net6.0'))">
       <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="[17.13.0]" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="[17.14.1]" />
         <PackageReference Include="xunit.runner.utility" VersionOverride="[2.9.3]" />
         <PackageReference Include="xunit.runner.visualstudio" VersionOverride="[3.0.2]" />
       </ItemGroup>
     </When>
     <Otherwise>
       <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="[17.13.0]" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="[17.14.1]" />
         <PackageReference Include="xunit.runner.utility" VersionOverride="[2.4.0]" />
         <PackageReference Include="xunit.runner.visualstudio" VersionOverride="[2.4.5]" />
       </ItemGroup>
