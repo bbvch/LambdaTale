@@ -3,6 +3,7 @@
   "extends": ["config:best-practices", "group:all"],
   "dependencyDashboard": false,
   "ignorePaths": [],
+  "updatePinnedDependencies": false,
   "packageRules": [
     { "groupName": "xunit", "matchPackageNames": ["/^xunit(?:\\..*)?$/"] }
   ]
