@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition="$([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net8.0')) or $([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net472'))">
+    <When Condition="$([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), $(SupportedDotnetVersion))) or $([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), $(SupportedFrameworkVersion)))">
       <ItemGroup>
         <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
         <PackageVersion Include="xunit.runner.utility" Version="2.9.3" />
