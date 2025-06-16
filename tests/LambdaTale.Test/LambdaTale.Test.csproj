@@ -3,7 +3,7 @@
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <RollForward>major</RollForward>
-    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion);$(LatestDotnetVersion);netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>$(SupportedDotnetVersion);$(SupportedFrameworkVersion);$(LatestDotnetVersion);netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,13 +17,6 @@
         <PackageReference Include="Microsoft.NET.Test.Sdk" />
         <PackageReference Include="xunit.runner.utility" />
         <PackageReference Include="xunit.runner.visualstudio" />
-      </ItemGroup>
-    </When>
-    <When Condition="$([MSBuild]::IsTargetFrameworkCompatible($(TargetFramework), 'net6.0'))">
-      <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" VersionOverride="[17.13.0]" />
-        <PackageReference Include="xunit.runner.utility" VersionOverride="[2.9.3]" />
-        <PackageReference Include="xunit.runner.visualstudio" VersionOverride="[3.0.2]" />
       </ItemGroup>
     </When>
     <Otherwise>
