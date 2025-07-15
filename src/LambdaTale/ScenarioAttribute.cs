@@ -14,6 +14,6 @@ namespace LambdaTale;
 /// E.g. <see cref="Xunit.InlineDataAttribute"/> or
 /// <see cref="Xunit.MemberDataAttribute"/>.
 /// </summary>
-[XunitTestCaseDiscoverer("LambdaTale.Execution.ScenarioDiscoverer", "LambdaTale.Execution")]
+[XunitTestCaseDiscoverer("LambdaTale.Execution.ScenarioDiscoverer", "bbv.LambdaTale.Execution")]
 [AttributeUsage(AttributeTargets.Method)]
 public class ScenarioAttribute : FactAttribute;
