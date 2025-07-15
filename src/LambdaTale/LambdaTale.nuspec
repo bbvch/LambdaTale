@@ -30,22 +30,22 @@
   <files>
     <file src="..\..\README.md" target="docs\" />
 
-    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.dll" target="lib\$SupportedDotnetVersion$" />
-    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.pdb" target="lib\$SupportedDotnetVersion$" />
-    <file src="bin\Release\$SupportedDotnetVersion$\LambdaTale.xml" target="lib\$SupportedDotnetVersion$" />
-    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\LambdaTale.Execution.dll" target="lib\$SupportedDotnetVersion$" />
-    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\LambdaTale.Execution.pdb" target="lib\$SupportedDotnetVersion$" />
+    <file src="bin\Release\$SupportedDotnetVersion$\bbv.LambdaTale.dll" target="lib\$SupportedDotnetVersion$" />
+    <file src="bin\Release\$SupportedDotnetVersion$\bbv.LambdaTale.pdb" target="lib\$SupportedDotnetVersion$" />
+    <file src="bin\Release\$SupportedDotnetVersion$\bbv.LambdaTale.xml" target="lib\$SupportedDotnetVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\bbv.LambdaTale.Execution.dll" target="lib\$SupportedDotnetVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedDotnetVersion$\bbv.LambdaTale.Execution.pdb" target="lib\$SupportedDotnetVersion$" />
 
-    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.dll" target="lib\$SupportedFrameworkVersion$" />
-    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.pdb" target="lib\$SupportedFrameworkVersion$" />
-    <file src="bin\Release\$SupportedFrameworkVersion$\LambdaTale.xml" target="lib\$SupportedFrameworkVersion$" />
-    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\LambdaTale.Execution.dll" target="lib\$SupportedFrameworkVersion$" />
-    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\LambdaTale.Execution.pdb" target="lib\$SupportedFrameworkVersion$" />
+    <file src="bin\Release\$SupportedFrameworkVersion$\bbv.LambdaTale.dll" target="lib\$SupportedFrameworkVersion$" />
+    <file src="bin\Release\$SupportedFrameworkVersion$\bbv.LambdaTale.pdb" target="lib\$SupportedFrameworkVersion$" />
+    <file src="bin\Release\$SupportedFrameworkVersion$\bbv.LambdaTale.xml" target="lib\$SupportedFrameworkVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\bbv.LambdaTale.Execution.dll" target="lib\$SupportedFrameworkVersion$" />
+    <file src="..\LambdaTale.Execution\bin\Release\$SupportedFrameworkVersion$\bbv.LambdaTale.Execution.pdb" target="lib\$SupportedFrameworkVersion$" />
 
-    <file src="bin\Release\netstandard2.0\LambdaTale.dll" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.pdb" target="lib\netstandard2.0" />
-    <file src="bin\Release\netstandard2.0\LambdaTale.xml" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.dll" target="lib\netstandard2.0" />
-    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\LambdaTale.Execution.pdb" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\bbv.LambdaTale.dll" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\bbv.LambdaTale.pdb" target="lib\netstandard2.0" />
+    <file src="bin\Release\netstandard2.0\bbv.LambdaTale.xml" target="lib\netstandard2.0" />
+    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\bbv.LambdaTale.Execution.dll" target="lib\netstandard2.0" />
+    <file src="..\LambdaTale.Execution\bin\Release\netstandard2.0\bbv.LambdaTale.Execution.pdb" target="lib\netstandard2.0" />
   </files>
 </package>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Suppressions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Suppression>
+    <DiagnosticId>CP1002</DiagnosticId>
+    <Target>xunit.execution.dotnet, Version=2.9.3.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c</Target>
+    <Left>lib/netstandard2.0/bbv.LambdaTale.Execution.dll</Left>
+    <Right>lib/net472/bbv.LambdaTale.Execution.dll</Right>
+  </Suppression>
+  <Suppression>
+    <DiagnosticId>CP1002</DiagnosticId>
+    <Target>xunit.execution.dotnet, Version=2.9.3.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c</Target>
+    <Left>lib/netstandard2.0/bbv.LambdaTale.Execution.dll</Left>
+    <Right>lib/net8.0/bbv.LambdaTale.Execution.dll</Right>
+  </Suppression>
+</Suppressions>

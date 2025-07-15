@@ -22,7 +22,7 @@
         "resolved": "2.0.3",
         "contentHash": "pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg=="
       },
-      "lambdatale": {
+      "bbv.LambdaTale": {
         "type": "Project",
         "dependencies": {
           "xunit.extensibility.core": "[2.9.3, )"
@@ -73,7 +73,7 @@
         "resolved": "2.0.3",
         "contentHash": "pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg=="
       },
-      "lambdatale": {
+      "bbv.LambdaTale": {
         "type": "Project",
         "dependencies": {
           "xunit.extensibility.core": "[2.9.3, )"
@@ -110,7 +110,7 @@
         "resolved": "2.0.3",
         "contentHash": "pot1I4YOxlWjIb5jmwvvQNbTrZ3lJQ+jUGkGjWE3hEFM0l5gOnBWS+H3qsex68s5cO52g+44vpGzhAt+42vwKg=="
       },
-      "lambdatale": {
+      "bbv.LambdaTale": {
         "type": "Project",
         "dependencies": {
           "xunit.extensibility.core": "[2.9.3, )"
