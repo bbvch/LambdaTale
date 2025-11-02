@@ -946,9 +946,9 @@
       },
       "xunit.analyzers": {
         "type": "CentralTransitive",
-        "requested": "[1.24.0, )",
-        "resolved": "1.24.0",
-        "contentHash": "kxaoMFFZcQ+mJudaKKlt3gCqV6M6Gjbka0NEs8JFDrxn52O7w5OOnYfSYVfqusk8p7pxrGdjgaQHlGINsNZHAQ=="
+        "requested": "[1.25.0, )",
+        "resolved": "1.25.0",
+        "contentHash": "J3wD5p2VVOg6TXeOOCrD+7Nl2H/LOZuK1GovDyPbFFnvv8katIULfBCj2sQLIPKT22Ds44j1aHjJle4AU7jCbA=="
       },
       "xunit.extensibility.core": {
         "type": "CentralTransitive",
@@ -977,6 +977,15 @@
         "contentHash": "bvxj2Asb7nT+tqOFFerrhQeEjUYLwx0Poi0Rznu63WbqN+A4uDn1t5NWXfAOOQsF6lpmK6N2v+Vvgso7KWZS7g==",
         "dependencies": {
           "Microsoft.CodeCoverage": "18.0.0"
+        }
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies": {
+        "type": "Direct",
+        "requested": "[1.0.3, )",
+        "resolved": "1.0.3",
+        "contentHash": "vUc9Npcs14QsyOD01tnv/m8sQUnGTGOw1BCmKcv77LBJY7OxhJ+zJF7UD/sCL3lYNFuqmQEVlkfS4Quif6FyYg==",
+        "dependencies": {
+          "Microsoft.NETFramework.ReferenceAssemblies.net472": "1.0.3"
         }
       },
       "xunit": {
@@ -1012,6 +1021,11 @@
         "type": "Transitive",
         "resolved": "18.0.0",
         "contentHash": "DFPhMrsIofgJ1DDU3ModqqRArDm15/bNl4ecmcuBspZkZ4ONYnCC0R8U27WzK7cYv6r8l6Q/fRmvg7cb+I/dJA=="
+      },
+      "Microsoft.NETFramework.ReferenceAssemblies.net472": {
+        "type": "Transitive",
+        "resolved": "1.0.3",
+        "contentHash": "0E7evZXHXaDYYiLRfpyXvCh+yzM2rNTyuZDI+ZO7UUqSc6GfjePiXTdqJGtgIKUwdI81tzQKmaWprnUiPj9hAw=="
       },
       "Microsoft.TestPlatform.ObjectModel": {
         "type": "Transitive",
@@ -1068,9 +1082,9 @@
       },
       "xunit.analyzers": {
         "type": "CentralTransitive",
-        "requested": "[1.24.0, )",
-        "resolved": "1.24.0",
-        "contentHash": "kxaoMFFZcQ+mJudaKKlt3gCqV6M6Gjbka0NEs8JFDrxn52O7w5OOnYfSYVfqusk8p7pxrGdjgaQHlGINsNZHAQ=="
+        "requested": "[1.25.0, )",
+        "resolved": "1.25.0",
+        "contentHash": "J3wD5p2VVOg6TXeOOCrD+7Nl2H/LOZuK1GovDyPbFFnvv8katIULfBCj2sQLIPKT22Ds44j1aHjJle4AU7jCbA=="
       },
       "xunit.extensibility.core": {
         "type": "CentralTransitive",
@@ -1202,9 +1216,9 @@
       },
       "xunit.analyzers": {
         "type": "CentralTransitive",
-        "requested": "[1.24.0, )",
-        "resolved": "1.24.0",
-        "contentHash": "kxaoMFFZcQ+mJudaKKlt3gCqV6M6Gjbka0NEs8JFDrxn52O7w5OOnYfSYVfqusk8p7pxrGdjgaQHlGINsNZHAQ=="
+        "requested": "[1.25.0, )",
+        "resolved": "1.25.0",
+        "contentHash": "J3wD5p2VVOg6TXeOOCrD+7Nl2H/LOZuK1GovDyPbFFnvv8katIULfBCj2sQLIPKT22Ds44j1aHjJle4AU7jCbA=="
       },
       "xunit.extensibility.core": {
         "type": "CentralTransitive",
@@ -1336,9 +1350,9 @@
       },
       "xunit.analyzers": {
         "type": "CentralTransitive",
-        "requested": "[1.24.0, )",
-        "resolved": "1.24.0",
-        "contentHash": "kxaoMFFZcQ+mJudaKKlt3gCqV6M6Gjbka0NEs8JFDrxn52O7w5OOnYfSYVfqusk8p7pxrGdjgaQHlGINsNZHAQ=="
+        "requested": "[1.25.0, )",
+        "resolved": "1.25.0",
+        "contentHash": "J3wD5p2VVOg6TXeOOCrD+7Nl2H/LOZuK1GovDyPbFFnvv8katIULfBCj2sQLIPKT22Ds44j1aHjJle4AU7jCbA=="
       },
       "xunit.extensibility.core": {
         "type": "CentralTransitive",
