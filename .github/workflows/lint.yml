@@ -10,7 +10,7 @@ jobs:
       contents: read
       statuses: write
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
         with:
           fetch-depth: 0
       - uses: github/super-linter/slim@b807e99ddd37e444d189cfd2c2ca1274d8ae8ef1 # v7
