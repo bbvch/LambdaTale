@@ -10,5 +10,5 @@ jobs:
       contents: read
       statuses: write
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      - run: npx cspell@6 "**/*"
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6
+      - run: npx cspell@9.3.2 "**/*"
