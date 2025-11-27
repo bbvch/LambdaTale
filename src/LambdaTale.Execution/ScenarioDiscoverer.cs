@@ -5,13 +5,8 @@ using Xunit.Sdk;
 
 namespace LambdaTale.Execution;
 
-public class ScenarioDiscoverer : TheoryDiscoverer
+public class ScenarioDiscoverer(IMessageSink diagnosticMessageSink) : TheoryDiscoverer(diagnosticMessageSink)
 {
-    public ScenarioDiscoverer(IMessageSink diagnosticMessageSink)
-        : base(diagnosticMessageSink)
-    {
-    }
-
     public override IEnumerable<IXunitTestCase> Discover(
         ITestFrameworkDiscoveryOptions discoveryOptions, ITestMethod testMethod, IAttributeInfo theoryAttribute)
     {
