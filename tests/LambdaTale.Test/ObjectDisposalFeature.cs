@@ -248,12 +248,9 @@ public class ObjectDisposalFeature : Feature
         }
     }
 
-    private class Disposable : IDisposable
+    private class Disposable(int number) : IDisposable
     {
-        private readonly int number;
         private bool isDisposed;
-
-        public Disposable(int number) => this.number = number;
 
         ~Disposable()
         {
@@ -278,20 +275,15 @@ public class ObjectDisposalFeature : Feature
         {
             if (disposing)
             {
-                var @event = string.Concat("disposed", this.number.ToString(CultureInfo.InvariantCulture));
+                var @event = string.Concat("disposed", number.ToString(CultureInfo.InvariantCulture));
                 typeof(ObjectDisposalFeature).SaveTestEvent(@event);
                 this.isDisposed = true;
             }
         }
     }
 
-    private sealed class BadDisposable : Disposable
+    private sealed class BadDisposable(int number) : Disposable(number)
     {
-        public BadDisposable(int number)
-            : base(number)
-        {
-        }
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
