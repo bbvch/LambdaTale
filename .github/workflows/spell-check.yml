@@ -11,4 +11,4 @@ jobs:
       statuses: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - run: npx cspell@10.0.1 "**/*"
+      - run: npx cspell@10.5.1 "**/*"

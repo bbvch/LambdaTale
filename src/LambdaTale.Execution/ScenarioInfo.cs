@@ -127,11 +127,11 @@ public class ScenarioInfo
 
     private static string GetScenarioDisplayName(
         string scenarioOutlineDisplayName,
-        IReadOnlyList<ITypeInfo> typeArguments,
+        ITypeInfo[] typeArguments,
         List<IParameterInfo> parameters,
         IReadOnlyList<Argument> arguments)
     {
-        var typeArgumentsString = typeArguments.Any()
+        var typeArgumentsString = typeArguments.Length > 0
             ? $"<{string.Join(", ", typeArguments.Select(TypeUtility.ConvertToSimpleTypeName))}>"
             : string.Empty;
 
